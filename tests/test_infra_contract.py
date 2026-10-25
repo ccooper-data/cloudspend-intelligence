@@ -76,10 +76,17 @@ class InfrastructureGuardrailTests(unittest.TestCase):
 
         self.assertIn('id-token: write', workflow)
         self.assertIn("inputs.confirm == 'PLAN'", workflow)
-        self.assertIn('google-github-actions/auth@v2', workflow)
+        self.assertIn('google-github-actions/auth@v3', workflow)
         self.assertIn('terraform -chdir=infra plan', workflow)
         self.assertNotIn('terraform -chdir=infra apply', workflow)
         self.assertNotIn('service_account_key', workflow)
+
+    def test_ci_builds_a_non_root_container_and_checks_health(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+
+        self.assertIn('docker build --tag cloudspend-api:ci .', workflow)
+        self.assertIn('--entrypoint id cloudspend-api:ci -u', workflow)
+        self.assertIn('http://127.0.0.1:8080/healthz', workflow)
 
     def test_live_loader_is_project_locked_and_bounded(self) -> None:
         loader = (ROOT / "scripts" / "load_and_validate_gcp.sh").read_text(encoding="utf-8")
