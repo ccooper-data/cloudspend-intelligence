@@ -110,6 +110,20 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('--entrypoint id cloudspend-api:ci -u', workflow)
         self.assertIn('http://127.0.0.1:8080/healthz', workflow)
 
+    def test_cloud_run_demo_deployment_is_private_and_bounded(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "gcp-cloud-run-deploy.yml").read_text(encoding="utf-8")
+
+        self.assertIn("inputs.confirm == 'DEPLOY_PRIVATE_DEMO'", workflow)
+        self.assertIn('environment: gcp-demo', workflow)
+        self.assertIn('id-token: write', workflow)
+        self.assertIn('us-central1-docker.pkg.dev/cloudspend-intelligence-v1/cloudspend-api/', workflow)
+        self.assertIn('@$digest', workflow)
+        self.assertIn('--service-account=cloudspend-api-runtime@', workflow)
+        self.assertIn('--min=0', workflow)
+        self.assertIn('--max=1', workflow)
+        self.assertIn('--cpu-throttling', workflow)
+        self.assertNotIn('--allow-unauthenticated', workflow)
+
     def test_live_loader_is_project_locked_and_bounded(self) -> None:
         loader = (ROOT / "scripts" / "load_and_validate_gcp.sh").read_text(encoding="utf-8")
         validation = (ROOT / "sql" / "validate_live.sql").read_text(encoding="utf-8")
