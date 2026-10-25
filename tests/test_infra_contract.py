@@ -114,11 +114,17 @@ class InfrastructureGuardrailTests(unittest.TestCase):
 
         self.assertIn('cloudspend-intelligence-v1', loader)
         self.assertIn('LOAD_SYNTHETIC_DATA', loader)
-        self.assertIn('--maximum_bytes_billed=10737418240', loader)
+        self.assertIn('--maximum_bytes_billed=104857600', loader)
         self.assertIn('COUNT(*) = 540', validation)
         self.assertIn('COUNT(*) = 2', validation)
         self.assertIn("DATE '2025-03-17' AND service = 'Cloud Run'", validation)
         self.assertIn("DATE '2025-03-22' AND service = 'BigQuery'", validation)
+
+        live_workflow = (ROOT / ".github" / "workflows" / "gcp-bigquery-validate.yml").read_text(encoding="utf-8")
+        self.assertIn("inputs.confirm == 'LOAD_SYNTHETIC_DATA'", live_workflow)
+        self.assertIn('environment: gcp-demo', live_workflow)
+        self.assertIn('id-token: write', live_workflow)
+        self.assertIn('./scripts/load_and_validate_gcp.sh LOAD_SYNTHETIC_DATA', live_workflow)
 
 
 if __name__ == "__main__":

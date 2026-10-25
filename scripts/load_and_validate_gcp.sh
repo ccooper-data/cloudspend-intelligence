@@ -48,7 +48,7 @@ PY
 
 bq --location=US query \
   --use_legacy_sql=false \
-  --maximum_bytes_billed=10737418240 \
+  --maximum_bytes_billed=104857600 \
   < work/detect_anomalies_live.sql
 
 python3 - "${project_id}" sql/validate_live.sql work/validate_live.sql <<'PY'
@@ -63,7 +63,7 @@ PY
 
 bq --location=US query \
   --use_legacy_sql=false \
-  --maximum_bytes_billed=10737418240 \
+  --maximum_bytes_billed=104857600 \
   < work/validate_live.sql
 
 echo "Live synthetic-data validation passed."

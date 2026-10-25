@@ -1,0 +1,35 @@
+name: GCP BigQuery Synthetic Validation
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type LOAD_SYNTHETIC_DATA to replace only the synthetic demo tables"
+        required: true
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: cloudspend-bigquery-validation
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: inputs.confirm == 'LOAD_SYNTHETIC_DATA'
+    runs-on: ubuntu-latest
+    environment: gcp-demo
+    steps:
+      - uses: actions/checkout@v7
+      - uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Select the dedicated project
+        run: gcloud config set project cloudspend-intelligence-v1
+      - name: Load and validate explicitly synthetic data
+        env:
+          GCP_PROJECT_ID: cloudspend-intelligence-v1
+        run: ./scripts/load_and_validate_gcp.sh LOAD_SYNTHETIC_DATA
