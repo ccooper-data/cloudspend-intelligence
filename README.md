@@ -2,9 +2,9 @@
 
 [![CI](https://github.com/ccooper-data/cloudspend-intelligence/actions/workflows/ci.yml/badge.svg)](https://github.com/ccooper-data/cloudspend-intelligence/actions/workflows/ci.yml)
 
-**[Watch the 64-second project demo](https://youtu.be/BjCXFz_tLf8)** — explicitly synthetic data, no LLM, no activated billing account, and no deployed cloud resources.
+**[Watch the 64-second project demo](https://youtu.be/BjCXFz_tLf8)** — explicitly synthetic data, no LLM, and no deployed workload resources.
 
-A strictly local, $0-cost portfolio project that detects material daily cloud-spend spikes and explains them from query evidence. It uses 90 days of **deterministic, explicitly synthetic** GCP-style billing records. It does not require or contact GCP, does not create resources, and does not use a billing account or paid API.
+A local-first portfolio project that detects material daily cloud-spend spikes and explains them from query evidence. It uses 90 days of **deterministic, explicitly synthetic** GCP-style billing records. The local demo remains offline and free. A gated, live-validation phase is being prepared in a dedicated GCP Free Trial project; no workload resources have been deployed yet.
 
 > **Illustrative data only.** Every record is generated, every billing account identifier is fake, and no row represents anyone's real cloud spend.
 
@@ -45,11 +45,11 @@ PYTHONPATH=src python -m unittest discover -s tests -v
 ```text
 data/                  committed synthetic demo data and injection labels
 docs/                  architecture and decision record
-infra/                 unexecuted future Terraform cost-control sketch
+infra/                 gated Terraform architecture; deployment off by default
 sql/                   detector business rule
 src/cloudspend/        generator, loader, detector, explainer, CLI
 tests/                 edge cases and reproducibility tests
-.github/workflows/     local-equivalent CI; no cloud authentication
+.github/workflows/     CI plus manual, keyless, plan-only GCP workflow
 ```
 
 ## Ground truth versus detector inputs
@@ -81,13 +81,15 @@ The suite covers:
 - expected labeled data shape
 - byte-for-byte generator idempotency
 
-## Future GCP deployment — not performed
+## GCP deployment status
 
-The future design is Billing Export → BigQuery → scheduled query → anomaly table → authenticated Cloud Run API. [`infra/`](infra/) sketches a BigQuery daily byte quota and budget thresholds. It is documentation, not a deployment: CI never invokes Terraform, no backend or credentials are configured, and this project has made no cloud calls.
+The live design is synthetic CSV → BigQuery → bounded Workflow query → anomaly table → authenticated Cloud Run API, with Cloud Scheduler as the daily trigger. A dedicated project exists under an active Free Trial, but workload deployment remains locked while the project-scoped warning budget is established and verified.
 
-Budget alerts do not stop spend, and quotas cannot guarantee a zero bill. Any deployment must be a separately approved phase after pricing review, a funded billing account, a real notification channel, and review of `terraform plan`. An optional Gemini summary may be explored later, but the deterministic explanation remains the default and fallback.
+[`infra/`](infra/) defaults both identity bootstrap and workloads to off. It defines a `$25` warning budget, 10 GiB/day BigQuery quota, digest-pinned scale-to-zero Cloud Run service, bounded Scheduler/Workflow, separate runtime identities, branch-and-repository-scoped GitHub OIDC federation, and workflow-failure alerting. CI validates Terraform without credentials. The manual cloud workflow can create a plan but deliberately cannot apply it.
 
-See the [architecture](docs/architecture.md) and [ADR 0001](docs/adr/0001-local-deterministic-v1.md).
+Budget alerts do not stop spend, and quotas cannot guarantee a zero bill. The operating target is `$0` out of pocket; the trial must not be upgraded. Live changes require visible budget evidence and plan review. Gemini and other generative-AI services are excluded.
+
+See the [architecture](docs/architecture.md), [deployment and teardown runbook](docs/gcp-deployment-runbook.md), and [ADR 0001](docs/adr/0001-local-deterministic-v1.md).
 
 ## Portfolio status
 

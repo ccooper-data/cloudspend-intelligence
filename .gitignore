@@ -7,4 +7,10 @@ build/
 *.egg-info/
 data/cloudspend.db
 reports/*.json
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+tfplan
+evidence/live/
 

@@ -33,6 +33,12 @@ variable "deploy_workloads" {
   default     = false
 }
 
+variable "create_deployment_identity" {
+  description = "Separate bootstrap gate for the keyless GitHub deployment identity."
+  type        = bool
+  default     = false
+}
+
 variable "container_image" {
   description = "Immutable Artifact Registry image digest for the Cloud Run API."
   type        = string
@@ -56,7 +62,19 @@ variable "github_repository_owner_id" {
   default     = ""
 
   validation {
-    condition     = !var.deploy_workloads || can(regex("^[0-9]+$", var.github_repository_owner_id))
+    condition     = !(var.deploy_workloads || var.create_deployment_identity) || can(regex("^[0-9]+$", var.github_repository_owner_id))
     error_message = "Set the numeric GitHub repository owner ID before enabling workloads."
+  }
+}
+
+variable "alert_email" {
+  description = "Operational alert recipient. Supply via an uncommitted tfvars file."
+  type        = string
+  sensitive   = true
+  default     = ""
+
+  validation {
+    condition     = !var.deploy_workloads || can(regex("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$", var.alert_email))
+    error_message = "Set a valid operational alert email before enabling workloads."
   }
 }

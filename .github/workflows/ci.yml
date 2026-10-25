@@ -24,4 +24,14 @@ jobs:
         run: make demo
       - name: Verify generated data is labeled synthetic
         run: python -c "import csv; assert all(r['is_synthetic']=='true' for r in csv.DictReader(open('data/synthetic_gcp_billing.csv')))"
+      - uses: hashicorp/setup-terraform@v3
+        if: matrix.python-version == '3.12'
+      - name: Check Terraform formatting
+        if: matrix.python-version == '3.12'
+        run: terraform -chdir=infra fmt -check -recursive
+      - name: Validate Terraform without a backend or credentials
+        if: matrix.python-version == '3.12'
+        run: |
+          terraform -chdir=infra init -backend=false
+          terraform -chdir=infra validate
 

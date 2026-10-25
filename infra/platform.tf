@@ -1,14 +1,26 @@
 locals {
+  identity_services = toset([
+    "iamcredentials.googleapis.com",
+    "sts.googleapis.com",
+  ])
+
   required_services = toset([
     "artifactregistry.googleapis.com",
     "bigquery.googleapis.com",
-    "iamcredentials.googleapis.com",
+    "monitoring.googleapis.com",
     "run.googleapis.com",
     "cloudscheduler.googleapis.com",
-    "sts.googleapis.com",
     "workflowexecutions.googleapis.com",
     "workflows.googleapis.com",
   ])
+}
+
+resource "google_project_service" "identity" {
+  for_each = var.create_deployment_identity ? local.identity_services : toset([])
+
+  project            = var.project_id
+  service            = each.value
+  disable_on_destroy = false
 }
 
 resource "google_project_service" "required" {

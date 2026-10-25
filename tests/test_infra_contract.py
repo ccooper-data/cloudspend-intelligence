@@ -63,6 +63,24 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('daily_cost - median_cost > 25.00', sql)
         self.assertIn('ORDER BY contributor_cost DESC, project_id ASC, sku ASC', sql)
 
+    def test_monitoring_detects_failed_workflow_executions(self) -> None:
+        monitoring = (ROOT / "infra" / "monitoring.tf").read_text(encoding="utf-8")
+
+        self.assertIn('finished_execution_count', monitoring)
+        self.assertIn('metric.labels.status != "SUCCEEDED"', monitoring)
+        self.assertIn('threshold_value = 0', monitoring)
+        self.assertIn('notification_channels', monitoring)
+
+    def test_github_cloud_workflow_can_only_plan(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "gcp-plan.yml").read_text(encoding="utf-8")
+
+        self.assertIn('id-token: write', workflow)
+        self.assertIn("inputs.confirm == 'PLAN'", workflow)
+        self.assertIn('google-github-actions/auth@v2', workflow)
+        self.assertIn('terraform -chdir=infra plan', workflow)
+        self.assertNotIn('terraform -chdir=infra apply', workflow)
+        self.assertNotIn('service_account_key', workflow)
+
 
 if __name__ == "__main__":
     unittest.main()

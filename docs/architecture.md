@@ -32,17 +32,33 @@ The generated billing file resembles a small subset of GCP detailed billing expo
 | `is_synthetic` | Always `true` |
 | `injected_anomaly` | Ground-truth evaluation label; ignored by detector |
 
-## Future GCP shape (not deployed)
+## GCP validation shape (deployment gated)
 
 ```text
-Cloud Billing export -> BigQuery raw table -> scheduled SQL/query job
-                                              |
-                                              v
-                                        anomaly table
-                                              |
-                                              v
-                                  Cloud Run deterministic API
+synthetic CSV -> BigQuery billing_records -> Workflows detector query
+                                                ^              |
+                                                |              v
+                                      Cloud Scheduler      anomalies table
+                                                               |
+                                                               v
+                                                private Cloud Run API
 ```
 
-Terraform sketches this future architecture with guardrails. Before any deployment, a human must explicitly approve billing, choose a project and region, review current pricing, set a real notification channel, and run `terraform plan`. This repository contains no credentials and performs no cloud calls.
+The project uses the GCP Free Trial without upgrading to paid billing. Terraform
+has two explicit gates: a separately bootstrapped, keyless GitHub identity and
+the workloads themselves. Workloads default off. A project-scoped `$25` warning
+budget and all email thresholds must be verified before either gate is opened.
+
+BigQuery queries are limited both by a 10 GiB/day project quota and a 10 GiB
+per-query maximum. The detector recreates its result table, making retries
+idempotent. Scheduler runs daily with one retry; Workflows surfaces failures to
+Cloud Monitoring. Cloud Run accepts only authenticated callers, keeps zero
+minimum and one maximum instance, and runs a digest-pinned container. No public
+IAM principal, user-managed service-account key, Gemini service, VM, cluster, or
+always-on compute is part of the design.
+
+GitHub Actions obtains short-lived credentials through Workload Identity
+Federation, constrained to the numeric repository owner, repository name, and
+`main` branch. The cloud workflow is manual, environment-protected, and
+plan-only until a separate review adds an apply step.
 
