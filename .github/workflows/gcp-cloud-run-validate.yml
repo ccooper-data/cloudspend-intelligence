@@ -22,32 +22,41 @@ jobs:
     environment: gcp-demo
     steps:
       - uses: actions/checkout@v7
-      - uses: google-github-actions/auth@v3
+      - id: auth
+        uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
       - uses: google-github-actions/setup-gcloud@v3
+      - id: service
+        name: Resolve the private service URL
+        run: |
+          url="$(gcloud run services describe cloudspend-api \
+            --project=cloudspend-intelligence-v1 --region=us-central1 \
+            --format='value(status.url)')"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+      - id: identity
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
+          token_format: id_token
+          id_token_audience: ${{ steps.service.outputs.url }}
       - name: Verify private, authenticated, deterministic behavior
         env:
-          PROJECT_ID: cloudspend-intelligence-v1
-          REGION: us-central1
-          SERVICE: cloudspend-api
+          SERVICE_URL: ${{ steps.service.outputs.url }}
+          IDENTITY_TOKEN: ${{ steps.identity.outputs.id_token }}
         run: |
           set -euo pipefail
-          url="$(gcloud run services describe "$SERVICE" \
-            --project="$PROJECT_ID" --region="$REGION" \
-            --format='value(status.url)')"
-
           anonymous_status="$(curl --silent --output /dev/null --write-out '%{http_code}' \
-            "$url/healthz")"
+            "$SERVICE_URL/healthz")"
           case "$anonymous_status" in
             401|403|404) ;;
             *) echo "Expected anonymous access to be denied, got HTTP $anonymous_status" >&2; exit 1 ;;
           esac
 
-          identity_token="$(gcloud auth print-identity-token --audiences="$url")"
           authenticated_status="$(curl --silent --output /tmp/health.json --write-out '%{http_code}' \
-            --header "Authorization: Bearer $identity_token" "$url/healthz")"
+            --header "Authorization: Bearer $IDENTITY_TOKEN" "$SERVICE_URL/healthz")"
           test "$authenticated_status" = "200"
           python -c 'import json; assert json.load(open("/tmp/health.json")) == {"status": "ok"}'
 
@@ -62,10 +71,10 @@ jobs:
           PY
 
           curl --fail --silent --show-error \
-            --header "Authorization: Bearer $identity_token" \
+            --header "Authorization: Bearer $IDENTITY_TOKEN" \
             --header 'Content-Type: application/json' \
             --data-binary @/tmp/request.json \
-            "$url/v1/anomalies" > /tmp/response.json
+            "$SERVICE_URL/v1/anomalies" > /tmp/response.json
 
           python - <<'PY'
           import json
