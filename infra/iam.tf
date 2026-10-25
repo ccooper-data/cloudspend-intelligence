@@ -54,10 +54,10 @@ resource "google_iam_workload_identity_pool_provider" "github" {
   display_name                       = "CloudSpend main branch"
 
   attribute_mapping = {
-    "google.subject"             = "assertion.sub"
-    "attribute.repository"       = "assertion.repository"
+    "google.subject"                = "assertion.sub"
+    "attribute.repository"          = "assertion.repository"
     "attribute.repository_owner_id" = "assertion.repository_owner_id"
-    "attribute.ref"              = "assertion.ref"
+    "attribute.ref"                 = "assertion.ref"
   }
 
   attribute_condition = "assertion.repository == '${var.github_repository}' && assertion.repository_owner_id == '${var.github_repository_owner_id}' && assertion.ref == 'refs/heads/main'"

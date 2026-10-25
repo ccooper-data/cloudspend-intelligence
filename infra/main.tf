@@ -3,14 +3,20 @@ terraform {
   backend "gcs" {}
 
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 6.0" }
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "~> 7.0"
+    }
   }
 }
 
 provider "google" { project = var.project_id }
+provider "google-beta" { project = var.project_id }
 
 # This quota is a guardrail, not a guarantee against charges.
 resource "google_service_usage_consumer_quota_override" "bigquery_daily_bytes" {
+  provider       = google-beta
   count          = var.deploy_workloads ? 1 : 0
   project        = var.project_id
   service        = "bigquery.googleapis.com"
@@ -35,7 +41,8 @@ resource "google_billing_budget" "monthly" {
   threshold_rules { threshold_percent = 1.0 }
 
   all_updates_rule {
-    disable_default_iam_recipients = false
+    monitoring_notification_channels = []
+    disable_default_iam_recipients   = false
   }
 }
 

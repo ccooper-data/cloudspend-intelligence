@@ -16,7 +16,7 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertEqual(terraform.count("threshold_rules"), 3)
         for threshold in ("0.5", "0.9", "1.0"):
             self.assertIn(f"threshold_percent = {threshold}", terraform)
-        self.assertIn("disable_default_iam_recipients = false", terraform)
+        self.assertRegex(terraform, r"disable_default_iam_recipients\s*=\s*false")
 
     def test_query_quota_remains_conservative(self) -> None:
         terraform = (ROOT / "infra" / "main.tf").read_text(encoding="utf-8")
@@ -80,6 +80,18 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('terraform -chdir=infra plan', workflow)
         self.assertNotIn('terraform -chdir=infra apply', workflow)
         self.assertNotIn('service_account_key', workflow)
+
+    def test_live_loader_is_project_locked_and_bounded(self) -> None:
+        loader = (ROOT / "scripts" / "load_and_validate_gcp.sh").read_text(encoding="utf-8")
+        validation = (ROOT / "sql" / "validate_live.sql").read_text(encoding="utf-8")
+
+        self.assertIn('cloudspend-intelligence-v1', loader)
+        self.assertIn('LOAD_SYNTHETIC_DATA', loader)
+        self.assertIn('--maximum_bytes_billed=10737418240', loader)
+        self.assertIn('COUNT(*) = 540', validation)
+        self.assertIn('COUNT(*) = 2', validation)
+        self.assertIn("DATE '2025-03-17' AND service = 'Cloud Run'", validation)
+        self.assertIn("DATE '2025-03-22' AND service = 'BigQuery'", validation)
 
 
 if __name__ == "__main__":

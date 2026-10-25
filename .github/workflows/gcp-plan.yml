@@ -37,7 +37,6 @@ jobs:
           TF_VAR_billing_account_id: ${{ secrets.GCP_BILLING_ACCOUNT_ID }}
           TF_VAR_alert_email: ${{ secrets.GCP_ALERT_EMAIL }}
           TF_VAR_container_image: ${{ vars.GCP_CONTAINER_IMAGE_DIGEST }}
-          TF_VAR_github_repository_owner_id: ${{ vars.GITHUB_REPOSITORY_OWNER_ID }}
         run: >-
           terraform -chdir=infra plan
           -lock-timeout=5m

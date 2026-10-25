@@ -59,7 +59,7 @@ variable "github_repository" {
 variable "github_repository_owner_id" {
   description = "Numeric GitHub owner ID used to prevent organization-name reuse attacks."
   type        = string
-  default     = ""
+  default     = "314428882"
 
   validation {
     condition     = !(var.deploy_workloads || var.create_deployment_identity) || can(regex("^[0-9]+$", var.github_repository_owner_id))

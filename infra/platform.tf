@@ -165,7 +165,7 @@ resource "google_workflows_workflow" "daily" {
   call_log_level      = "LOG_ERRORS_ONLY"
 
   source_contents = templatefile("${path.module}/workflow.yaml.tftpl", {
-    project_id          = var.project_id
+    project_id = var.project_id
     detector_query_json = jsonencode(templatefile("${path.module}/../sql/detect_anomalies_bigquery.sql", {
       project_id = var.project_id
     }))

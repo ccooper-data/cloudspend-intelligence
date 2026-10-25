@@ -13,4 +13,5 @@ reports/*.json
 .terraform/
 tfplan
 evidence/live/
+work/
 
