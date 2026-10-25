@@ -100,24 +100,6 @@ resource "google_project_iam_member" "github_deployer" {
   member  = "serviceAccount:${google_service_account.github_deployer[0].email}"
 }
 
-# Runtime access is data-plane only. No owner/editor roles are granted.
-resource "google_project_iam_member" "api_bigquery_job_user" {
-  count = var.deploy_workloads ? 1 : 0
-
-  project = var.project_id
-  role    = "roles/bigquery.jobUser"
-  member  = "serviceAccount:${google_service_account.api_runtime[0].email}"
-}
-
-resource "google_bigquery_dataset_iam_member" "api_data_viewer" {
-  count = var.deploy_workloads ? 1 : 0
-
-  project    = var.project_id
-  dataset_id = google_bigquery_dataset.cloudspend[0].dataset_id
-  role       = "roles/bigquery.dataViewer"
-  member     = "serviceAccount:${google_service_account.api_runtime[0].email}"
-}
-
 resource "google_project_iam_member" "workflow_bigquery_job_user" {
   count = var.deploy_workloads ? 1 : 0
 

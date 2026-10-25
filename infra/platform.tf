@@ -142,15 +142,16 @@ resource "google_cloud_run_v2_service" "api" {
   depends_on = [google_project_service.required]
 }
 
-# Public IAM principals are deliberately absent.
-resource "google_cloud_run_v2_service_iam_member" "workflow_invoker" {
-  count = var.deploy_workloads ? 1 : 0
+# Public IAM principals are deliberately absent. The keyless, environment-
+# protected GitHub identity is the only API caller used for live validation.
+resource "google_cloud_run_v2_service_iam_member" "github_invoker" {
+  count = var.deploy_workloads && var.create_deployment_identity ? 1 : 0
 
   project  = var.project_id
   location = google_cloud_run_v2_service.api[0].location
   name     = google_cloud_run_v2_service.api[0].name
   role     = "roles/run.invoker"
-  member   = "serviceAccount:${google_service_account.workflow[0].email}"
+  member   = "serviceAccount:${google_service_account.github_deployer[0].email}"
 }
 
 resource "google_workflows_workflow" "daily" {

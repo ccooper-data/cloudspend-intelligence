@@ -12,7 +12,7 @@ class InfrastructureGuardrailTests(unittest.TestCase):
 
         self.assertIn('default     = 25', variables)
         self.assertIn('display_name    = "cloudspend-v1-safety"', terraform)
-        self.assertIn('projects = ["projects/${var.project_id}"]', terraform)
+        self.assertIn('projects = ["projects/${data.google_project.current.number}"]', terraform)
         self.assertEqual(terraform.count("threshold_rules"), 3)
         for threshold in ("0.5", "0.9", "1.0"):
             self.assertIn(f"threshold_percent = {threshold}", terraform)
@@ -30,14 +30,19 @@ class InfrastructureGuardrailTests(unittest.TestCase):
     def test_workloads_are_off_by_default_and_image_is_immutable(self) -> None:
         variables = (ROOT / "infra" / "variables.tf").read_text(encoding="utf-8")
         platform = (ROOT / "infra" / "platform.tf").read_text(encoding="utf-8")
+        iam = (ROOT / "infra" / "iam.tf").read_text(encoding="utf-8")
 
         self.assertIn('variable "deploy_workloads"', variables)
         self.assertIn('default     = false', variables)
+        self.assertIn('check "identity_precedes_workloads"', variables)
         self.assertIn('@sha256:[0-9a-f]{64}$', variables)
         self.assertIn('min_instance_count = 0', platform)
         self.assertIn('max_instance_count = 1', platform)
         self.assertNotIn('allUsers', platform)
         self.assertNotIn('allAuthenticatedUsers', platform)
+        self.assertNotIn('api_bigquery_job_user', iam)
+        self.assertNotIn('api_data_viewer', iam)
+        self.assertIn('google_cloud_run_v2_service_iam_member" "github_invoker', platform)
 
     def test_github_federation_is_keyless_and_repo_scoped(self) -> None:
         iam = (ROOT / "infra" / "iam.tf").read_text(encoding="utf-8")

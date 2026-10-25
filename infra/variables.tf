@@ -39,6 +39,13 @@ variable "create_deployment_identity" {
   default     = false
 }
 
+check "identity_precedes_workloads" {
+  assert {
+    condition     = !var.deploy_workloads || var.create_deployment_identity
+    error_message = "Workloads require the keyless deployment identity gate to be enabled."
+  }
+}
+
 variable "container_image" {
   description = "Immutable Artifact Registry image digest for the Cloud Run API."
   type        = string

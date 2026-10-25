@@ -29,7 +29,7 @@ resource "google_service_usage_consumer_quota_override" "bigquery_daily_bytes" {
 resource "google_billing_budget" "monthly" {
   billing_account = var.billing_account_id
   display_name    = "cloudspend-v1-safety"
-  budget_filter { projects = ["projects/${var.project_id}"] }
+  budget_filter { projects = ["projects/${data.google_project.current.number}"] }
   amount {
     specified_amount {
       currency_code = "USD"
