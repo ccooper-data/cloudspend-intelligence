@@ -1,0 +1,10 @@
+.git
+.github
+data
+docs
+infra
+reports
+tests
+work
+__pycache__
+*.pyc
