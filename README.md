@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/ccooper-data/cloudspend-intelligence/actions/workflows/ci.yml/badge.svg)](https://github.com/ccooper-data/cloudspend-intelligence/actions/workflows/ci.yml)
 
+**[Watch the 64-second project demo](https://youtu.be/BjCXFz_tLf8)** — explicitly synthetic data, no LLM, no activated billing account, and no deployed cloud resources.
+
 A strictly local, $0-cost portfolio project that detects material daily cloud-spend spikes and explains them from query evidence. It uses 90 days of **deterministic, explicitly synthetic** GCP-style billing records. It does not require or contact GCP, does not create resources, and does not use a billing account or paid API.
 
 > **Illustrative data only.** Every record is generated, every billing account identifier is fake, and no row represents anyone's real cloud spend.
