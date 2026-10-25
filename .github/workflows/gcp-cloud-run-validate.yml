@@ -1,0 +1,81 @@
+name: GCP Cloud Run Private API Validation
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type VALIDATE_PRIVATE_API to test the deployed synthetic demo"
+        required: true
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: cloudspend-cloud-run-validation
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: inputs.confirm == 'VALIDATE_PRIVATE_API'
+    runs-on: ubuntu-latest
+    environment: gcp-demo
+    steps:
+      - uses: actions/checkout@v7
+      - uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Verify private, authenticated, deterministic behavior
+        env:
+          PROJECT_ID: cloudspend-intelligence-v1
+          REGION: us-central1
+          SERVICE: cloudspend-api
+        run: |
+          set -euo pipefail
+          url="$(gcloud run services describe "$SERVICE" \
+            --project="$PROJECT_ID" --region="$REGION" \
+            --format='value(status.url)')"
+
+          anonymous_status="$(curl --silent --output /dev/null --write-out '%{http_code}' \
+            "$url/healthz")"
+          case "$anonymous_status" in
+            401|403) ;;
+            *) echo "Expected anonymous access to be denied, got HTTP $anonymous_status" >&2; exit 1 ;;
+          esac
+
+          identity_token="$(gcloud auth print-identity-token --audiences="$url")"
+          authenticated_status="$(curl --silent --output /tmp/health.json --write-out '%{http_code}' \
+            --header "Authorization: Bearer $identity_token" "$url/healthz")"
+          test "$authenticated_status" = "200"
+          python -c 'import json; assert json.load(open("/tmp/health.json")) == {"status": "ok"}'
+
+          python - <<'PY'
+          import csv
+          import json
+
+          with open("data/synthetic_gcp_billing.csv", newline="", encoding="utf-8") as source:
+              records = list(csv.DictReader(source))
+          with open("/tmp/request.json", "w", encoding="utf-8") as target:
+              json.dump({"records": records}, target, separators=(",", ":"))
+          PY
+
+          curl --fail --silent --show-error \
+            --header "Authorization: Bearer $identity_token" \
+            --header 'Content-Type: application/json' \
+            --data-binary @/tmp/request.json \
+            "$url/v1/anomalies" > /tmp/response.json
+
+          python - <<'PY'
+          import json
+
+          with open("/tmp/response.json", encoding="utf-8") as source:
+              result = json.load(source)
+          assert result["synthetic_demo"] is True
+          assert result["anomaly_count"] == 2
+          actual = {(item["usage_date"], item["service"]) for item in result["anomalies"]}
+          expected = {("2025-03-17", "Cloud Run"), ("2025-03-22", "BigQuery")}
+          assert actual == expected, (actual, expected)
+          print("Private API validation passed: anonymous denied, authenticated synthetic result matched 2 anomalies.")
+          PY

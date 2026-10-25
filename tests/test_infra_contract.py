@@ -124,6 +124,18 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('--cpu-throttling', workflow)
         self.assertNotIn('--allow-unauthenticated', workflow)
 
+    def test_cloud_run_live_validation_requires_authentication(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "gcp-cloud-run-validate.yml").read_text(encoding="utf-8")
+
+        self.assertIn("inputs.confirm == 'VALIDATE_PRIVATE_API'", workflow)
+        self.assertIn('environment: gcp-demo', workflow)
+        self.assertIn('id-token: write', workflow)
+        self.assertIn('gcloud auth print-identity-token', workflow)
+        self.assertIn('401|403', workflow)
+        self.assertIn('result["anomaly_count"] == 2', workflow)
+        self.assertIn('2025-03-17', workflow)
+        self.assertIn('2025-03-22', workflow)
+
     def test_live_loader_is_project_locked_and_bounded(self) -> None:
         loader = (ROOT / "scripts" / "load_and_validate_gcp.sh").read_text(encoding="utf-8")
         validation = (ROOT / "sql" / "validate_live.sql").read_text(encoding="utf-8")
