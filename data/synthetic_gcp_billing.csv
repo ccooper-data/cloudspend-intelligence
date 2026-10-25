@@ -1,0 +1,541 @@
+usage_date,billing_account_id,project_id,service,sku,cost,currency,is_synthetic,injected_anomaly
+2025-01-01,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.07,USD,true,false
+2025-01-01,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.28,USD,true,false
+2025-01-01,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.79,USD,true,false
+2025-01-01,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.31,USD,true,false
+2025-01-01,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.56,USD,true,false
+2025-01-01,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.90,USD,true,false
+2025-01-02,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.45,USD,true,false
+2025-01-02,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.87,USD,true,false
+2025-01-02,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.96,USD,true,false
+2025-01-02,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.84,USD,true,false
+2025-01-02,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.95,USD,true,false
+2025-01-02,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.69,USD,true,false
+2025-01-03,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.84,USD,true,false
+2025-01-03,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.47,USD,true,false
+2025-01-03,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.11,USD,true,false
+2025-01-03,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.37,USD,true,false
+2025-01-03,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.17,USD,true,false
+2025-01-03,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.48,USD,true,false
+2025-01-04,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.81,USD,true,false
+2025-01-04,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.61,USD,true,false
+2025-01-04,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.60,USD,true,false
+2025-01-04,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.74,USD,true,false
+2025-01-04,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.44,USD,true,false
+2025-01-04,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,25.03,USD,true,false
+2025-01-05,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.67,USD,true,false
+2025-01-05,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.13,USD,true,false
+2025-01-05,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.84,USD,true,false
+2025-01-05,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.06,USD,true,false
+2025-01-05,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.12,USD,true,false
+2025-01-05,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.38,USD,true,false
+2025-01-06,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.49,USD,true,false
+2025-01-06,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.46,USD,true,false
+2025-01-06,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.44,USD,true,false
+2025-01-06,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.47,USD,true,false
+2025-01-06,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.68,USD,true,false
+2025-01-06,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.14,USD,true,false
+2025-01-07,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,39.77,USD,true,false
+2025-01-07,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.15,USD,true,false
+2025-01-07,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,61.36,USD,true,false
+2025-01-07,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.20,USD,true,false
+2025-01-07,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.47,USD,true,false
+2025-01-07,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.73,USD,true,false
+2025-01-08,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.32,USD,true,false
+2025-01-08,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.39,USD,true,false
+2025-01-08,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.20,USD,true,false
+2025-01-08,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.41,USD,true,false
+2025-01-08,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.45,USD,true,false
+2025-01-08,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.04,USD,true,false
+2025-01-09,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.71,USD,true,false
+2025-01-09,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.71,USD,true,false
+2025-01-09,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,64.35,USD,true,false
+2025-01-09,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.94,USD,true,false
+2025-01-09,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.84,USD,true,false
+2025-01-09,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.83,USD,true,false
+2025-01-10,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.09,USD,true,false
+2025-01-10,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.31,USD,true,false
+2025-01-10,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.49,USD,true,false
+2025-01-10,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.22,USD,true,false
+2025-01-10,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.24,USD,true,false
+2025-01-10,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.62,USD,true,false
+2025-01-11,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.43,USD,true,false
+2025-01-11,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.72,USD,true,false
+2025-01-11,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.99,USD,true,false
+2025-01-11,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.59,USD,true,false
+2025-01-11,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.52,USD,true,false
+2025-01-11,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.82,USD,true,false
+2025-01-12,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.29,USD,true,false
+2025-01-12,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.23,USD,true,false
+2025-01-12,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.26,USD,true,false
+2025-01-12,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.16,USD,true,false
+2025-01-12,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.19,USD,true,false
+2025-01-12,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.17,USD,true,false
+2025-01-13,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.74,USD,true,false
+2025-01-13,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.57,USD,true,false
+2025-01-13,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.85,USD,true,false
+2025-01-13,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.57,USD,true,false
+2025-01-13,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.57,USD,true,false
+2025-01-13,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.28,USD,true,false
+2025-01-14,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.03,USD,true,false
+2025-01-14,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,16.99,USD,true,false
+2025-01-14,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,61.75,USD,true,false
+2025-01-14,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.30,USD,true,false
+2025-01-14,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.36,USD,true,false
+2025-01-14,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.87,USD,true,false
+2025-01-15,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.57,USD,true,false
+2025-01-15,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.23,USD,true,false
+2025-01-15,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.59,USD,true,false
+2025-01-15,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.26,USD,true,false
+2025-01-15,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.52,USD,true,false
+2025-01-15,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.18,USD,true,false
+2025-01-16,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.33,USD,true,false
+2025-01-16,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.82,USD,true,false
+2025-01-16,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,64.74,USD,true,false
+2025-01-16,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.79,USD,true,false
+2025-01-16,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.92,USD,true,false
+2025-01-16,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.62,USD,true,false
+2025-01-17,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.71,USD,true,false
+2025-01-17,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.41,USD,true,false
+2025-01-17,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.91,USD,true,false
+2025-01-17,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.32,USD,true,false
+2025-01-17,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.31,USD,true,false
+2025-01-17,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.41,USD,true,false
+2025-01-18,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.68,USD,true,false
+2025-01-18,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.83,USD,true,false
+2025-01-18,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.41,USD,true,false
+2025-01-18,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.69,USD,true,false
+2025-01-18,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.41,USD,true,false
+2025-01-18,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.96,USD,true,false
+2025-01-19,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.55,USD,true,false
+2025-01-19,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.07,USD,true,false
+2025-01-19,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.65,USD,true,false
+2025-01-19,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.26,USD,true,false
+2025-01-19,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.08,USD,true,false
+2025-01-19,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.31,USD,true,false
+2025-01-20,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.99,USD,true,false
+2025-01-20,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.41,USD,true,false
+2025-01-20,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.24,USD,true,false
+2025-01-20,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.42,USD,true,false
+2025-01-20,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.64,USD,true,false
+2025-01-20,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.42,USD,true,false
+2025-01-21,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,39.65,USD,true,false
+2025-01-21,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.10,USD,true,false
+2025-01-21,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.14,USD,true,false
+2025-01-21,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.15,USD,true,false
+2025-01-21,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.44,USD,true,false
+2025-01-21,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.66,USD,true,false
+2025-01-22,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.19,USD,true,false
+2025-01-22,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.33,USD,true,false
+2025-01-22,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.01,USD,true,false
+2025-01-22,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.36,USD,true,false
+2025-01-22,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.59,USD,true,false
+2025-01-22,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.97,USD,true,false
+2025-01-23,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.58,USD,true,false
+2025-01-23,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.93,USD,true,false
+2025-01-23,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,64.16,USD,true,false
+2025-01-23,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.89,USD,true,false
+2025-01-23,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.81,USD,true,false
+2025-01-23,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.76,USD,true,false
+2025-01-24,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.97,USD,true,false
+2025-01-24,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.25,USD,true,false
+2025-01-24,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.30,USD,true,false
+2025-01-24,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.42,USD,true,false
+2025-01-24,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.20,USD,true,false
+2025-01-24,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.55,USD,true,false
+2025-01-25,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.93,USD,true,false
+2025-01-25,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.67,USD,true,false
+2025-01-25,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.80,USD,true,false
+2025-01-25,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.54,USD,true,false
+2025-01-25,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.48,USD,true,false
+2025-01-25,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,25.10,USD,true,false
+2025-01-26,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.17,USD,true,false
+2025-01-26,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.18,USD,true,false
+2025-01-26,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.04,USD,true,false
+2025-01-26,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.11,USD,true,false
+2025-01-26,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.16,USD,true,false
+2025-01-26,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.10,USD,true,false
+2025-01-27,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.61,USD,true,false
+2025-01-27,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.51,USD,true,false
+2025-01-27,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.66,USD,true,false
+2025-01-27,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.52,USD,true,false
+2025-01-27,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.71,USD,true,false
+2025-01-27,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.21,USD,true,false
+2025-01-28,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,39.90,USD,true,false
+2025-01-28,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.21,USD,true,false
+2025-01-28,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,61.55,USD,true,false
+2025-01-28,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.25,USD,true,false
+2025-01-28,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.33,USD,true,false
+2025-01-28,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.80,USD,true,false
+2025-01-29,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.45,USD,true,false
+2025-01-29,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.17,USD,true,false
+2025-01-29,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.40,USD,true,false
+2025-01-29,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.46,USD,true,false
+2025-01-29,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.48,USD,true,false
+2025-01-29,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.11,USD,true,false
+2025-01-30,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.83,USD,true,false
+2025-01-30,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.77,USD,true,false
+2025-01-30,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,64.55,USD,true,false
+2025-01-30,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.74,USD,true,false
+2025-01-30,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.88,USD,true,false
+2025-01-30,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.90,USD,true,false
+2025-01-31,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.59,USD,true,false
+2025-01-31,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.36,USD,true,false
+2025-01-31,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.69,USD,true,false
+2025-01-31,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.27,USD,true,false
+2025-01-31,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.28,USD,true,false
+2025-01-31,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.34,USD,true,false
+2025-02-01,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.55,USD,true,false
+2025-02-01,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.77,USD,true,false
+2025-02-01,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.21,USD,true,false
+2025-02-01,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.64,USD,true,false
+2025-02-01,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.55,USD,true,false
+2025-02-01,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.89,USD,true,false
+2025-02-02,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.42,USD,true,false
+2025-02-02,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.29,USD,true,false
+2025-02-02,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.46,USD,true,false
+2025-02-02,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.21,USD,true,false
+2025-02-02,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.05,USD,true,false
+2025-02-02,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.24,USD,true,false
+2025-02-03,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.87,USD,true,false
+2025-02-03,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.35,USD,true,false
+2025-02-03,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.05,USD,true,false
+2025-02-03,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.62,USD,true,false
+2025-02-03,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.60,USD,true,false
+2025-02-03,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.35,USD,true,false
+2025-02-04,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.15,USD,true,false
+2025-02-04,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.05,USD,true,false
+2025-02-04,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,61.95,USD,true,false
+2025-02-04,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.10,USD,true,false
+2025-02-04,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.40,USD,true,false
+2025-02-04,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.94,USD,true,false
+2025-02-05,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.07,USD,true,false
+2025-02-05,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.28,USD,true,false
+2025-02-05,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.79,USD,true,false
+2025-02-05,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.31,USD,true,false
+2025-02-05,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.56,USD,true,false
+2025-02-05,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.90,USD,true,false
+2025-02-06,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.45,USD,true,false
+2025-02-06,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.87,USD,true,false
+2025-02-06,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.96,USD,true,false
+2025-02-06,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.84,USD,true,false
+2025-02-06,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.95,USD,true,false
+2025-02-06,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.69,USD,true,false
+2025-02-07,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.84,USD,true,false
+2025-02-07,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.47,USD,true,false
+2025-02-07,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.11,USD,true,false
+2025-02-07,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.37,USD,true,false
+2025-02-07,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.17,USD,true,false
+2025-02-07,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.48,USD,true,false
+2025-02-08,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.81,USD,true,false
+2025-02-08,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.61,USD,true,false
+2025-02-08,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.60,USD,true,false
+2025-02-08,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.74,USD,true,false
+2025-02-08,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.44,USD,true,false
+2025-02-08,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,25.03,USD,true,false
+2025-02-09,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.67,USD,true,false
+2025-02-09,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.13,USD,true,false
+2025-02-09,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.84,USD,true,false
+2025-02-09,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.06,USD,true,false
+2025-02-09,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.12,USD,true,false
+2025-02-09,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.38,USD,true,false
+2025-02-10,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.49,USD,true,false
+2025-02-10,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.46,USD,true,false
+2025-02-10,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.44,USD,true,false
+2025-02-10,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.47,USD,true,false
+2025-02-10,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.68,USD,true,false
+2025-02-10,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.14,USD,true,false
+2025-02-11,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,39.77,USD,true,false
+2025-02-11,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.15,USD,true,false
+2025-02-11,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,61.36,USD,true,false
+2025-02-11,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.20,USD,true,false
+2025-02-11,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.47,USD,true,false
+2025-02-11,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.73,USD,true,false
+2025-02-12,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.32,USD,true,false
+2025-02-12,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.39,USD,true,false
+2025-02-12,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.20,USD,true,false
+2025-02-12,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.41,USD,true,false
+2025-02-12,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.45,USD,true,false
+2025-02-12,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.04,USD,true,false
+2025-02-13,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.71,USD,true,false
+2025-02-13,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.71,USD,true,false
+2025-02-13,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,64.35,USD,true,false
+2025-02-13,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.94,USD,true,false
+2025-02-13,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.84,USD,true,false
+2025-02-13,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.83,USD,true,false
+2025-02-14,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.09,USD,true,false
+2025-02-14,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.31,USD,true,false
+2025-02-14,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.49,USD,true,false
+2025-02-14,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.22,USD,true,false
+2025-02-14,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.24,USD,true,false
+2025-02-14,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.62,USD,true,false
+2025-02-15,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.43,USD,true,false
+2025-02-15,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.72,USD,true,false
+2025-02-15,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.99,USD,true,false
+2025-02-15,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.59,USD,true,false
+2025-02-15,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.52,USD,true,false
+2025-02-15,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.82,USD,true,false
+2025-02-16,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.29,USD,true,false
+2025-02-16,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.23,USD,true,false
+2025-02-16,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.26,USD,true,false
+2025-02-16,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.16,USD,true,false
+2025-02-16,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.19,USD,true,false
+2025-02-16,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.17,USD,true,false
+2025-02-17,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.74,USD,true,false
+2025-02-17,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.57,USD,true,false
+2025-02-17,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.85,USD,true,false
+2025-02-17,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.57,USD,true,false
+2025-02-17,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.57,USD,true,false
+2025-02-17,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.28,USD,true,false
+2025-02-18,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.03,USD,true,false
+2025-02-18,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,16.99,USD,true,false
+2025-02-18,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,61.75,USD,true,false
+2025-02-18,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.30,USD,true,false
+2025-02-18,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.36,USD,true,false
+2025-02-18,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.87,USD,true,false
+2025-02-19,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.57,USD,true,false
+2025-02-19,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.23,USD,true,false
+2025-02-19,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.59,USD,true,false
+2025-02-19,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.26,USD,true,false
+2025-02-19,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.52,USD,true,false
+2025-02-19,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.18,USD,true,false
+2025-02-20,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.33,USD,true,false
+2025-02-20,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.82,USD,true,false
+2025-02-20,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,64.74,USD,true,false
+2025-02-20,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.79,USD,true,false
+2025-02-20,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.92,USD,true,false
+2025-02-20,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.62,USD,true,false
+2025-02-21,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.71,USD,true,false
+2025-02-21,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.41,USD,true,false
+2025-02-21,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.91,USD,true,false
+2025-02-21,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.32,USD,true,false
+2025-02-21,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.31,USD,true,false
+2025-02-21,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.41,USD,true,false
+2025-02-22,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.68,USD,true,false
+2025-02-22,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.83,USD,true,false
+2025-02-22,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.41,USD,true,false
+2025-02-22,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.69,USD,true,false
+2025-02-22,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.41,USD,true,false
+2025-02-22,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.96,USD,true,false
+2025-02-23,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.55,USD,true,false
+2025-02-23,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.07,USD,true,false
+2025-02-23,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.65,USD,true,false
+2025-02-23,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.26,USD,true,false
+2025-02-23,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.08,USD,true,false
+2025-02-23,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.31,USD,true,false
+2025-02-24,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.99,USD,true,false
+2025-02-24,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.41,USD,true,false
+2025-02-24,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.24,USD,true,false
+2025-02-24,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.42,USD,true,false
+2025-02-24,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.64,USD,true,false
+2025-02-24,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.42,USD,true,false
+2025-02-25,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,39.65,USD,true,false
+2025-02-25,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.10,USD,true,false
+2025-02-25,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.14,USD,true,false
+2025-02-25,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.15,USD,true,false
+2025-02-25,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.44,USD,true,false
+2025-02-25,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.66,USD,true,false
+2025-02-26,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.19,USD,true,false
+2025-02-26,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.33,USD,true,false
+2025-02-26,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.01,USD,true,false
+2025-02-26,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.36,USD,true,false
+2025-02-26,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.59,USD,true,false
+2025-02-26,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.97,USD,true,false
+2025-02-27,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.58,USD,true,false
+2025-02-27,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.93,USD,true,false
+2025-02-27,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,64.16,USD,true,false
+2025-02-27,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.89,USD,true,false
+2025-02-27,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.81,USD,true,false
+2025-02-27,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.76,USD,true,false
+2025-02-28,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.97,USD,true,false
+2025-02-28,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.25,USD,true,false
+2025-02-28,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.30,USD,true,false
+2025-02-28,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.42,USD,true,false
+2025-02-28,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.20,USD,true,false
+2025-02-28,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.55,USD,true,false
+2025-03-01,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.93,USD,true,false
+2025-03-01,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.67,USD,true,false
+2025-03-01,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.80,USD,true,false
+2025-03-01,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.54,USD,true,false
+2025-03-01,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.48,USD,true,false
+2025-03-01,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,25.10,USD,true,false
+2025-03-02,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.17,USD,true,false
+2025-03-02,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.18,USD,true,false
+2025-03-02,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.04,USD,true,false
+2025-03-02,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.11,USD,true,false
+2025-03-02,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.16,USD,true,false
+2025-03-02,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.10,USD,true,false
+2025-03-03,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.61,USD,true,false
+2025-03-03,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.51,USD,true,false
+2025-03-03,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.66,USD,true,false
+2025-03-03,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.52,USD,true,false
+2025-03-03,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.71,USD,true,false
+2025-03-03,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.21,USD,true,false
+2025-03-04,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,39.90,USD,true,false
+2025-03-04,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.21,USD,true,false
+2025-03-04,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,61.55,USD,true,false
+2025-03-04,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.25,USD,true,false
+2025-03-04,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.33,USD,true,false
+2025-03-04,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.80,USD,true,false
+2025-03-05,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.45,USD,true,false
+2025-03-05,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.17,USD,true,false
+2025-03-05,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.40,USD,true,false
+2025-03-05,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.46,USD,true,false
+2025-03-05,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.48,USD,true,false
+2025-03-05,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.11,USD,true,false
+2025-03-06,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.83,USD,true,false
+2025-03-06,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.77,USD,true,false
+2025-03-06,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,64.55,USD,true,false
+2025-03-06,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.74,USD,true,false
+2025-03-06,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.88,USD,true,false
+2025-03-06,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.90,USD,true,false
+2025-03-07,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.59,USD,true,false
+2025-03-07,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.36,USD,true,false
+2025-03-07,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.69,USD,true,false
+2025-03-07,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.27,USD,true,false
+2025-03-07,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.28,USD,true,false
+2025-03-07,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.34,USD,true,false
+2025-03-08,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.55,USD,true,false
+2025-03-08,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.77,USD,true,false
+2025-03-08,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.21,USD,true,false
+2025-03-08,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.64,USD,true,false
+2025-03-08,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.55,USD,true,false
+2025-03-08,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.89,USD,true,false
+2025-03-09,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.42,USD,true,false
+2025-03-09,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.29,USD,true,false
+2025-03-09,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.46,USD,true,false
+2025-03-09,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.21,USD,true,false
+2025-03-09,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.05,USD,true,false
+2025-03-09,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.24,USD,true,false
+2025-03-10,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.87,USD,true,false
+2025-03-10,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.35,USD,true,false
+2025-03-10,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.05,USD,true,false
+2025-03-10,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.62,USD,true,false
+2025-03-10,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.60,USD,true,false
+2025-03-10,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.35,USD,true,false
+2025-03-11,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.15,USD,true,false
+2025-03-11,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.05,USD,true,false
+2025-03-11,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,61.95,USD,true,false
+2025-03-11,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.10,USD,true,false
+2025-03-11,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.40,USD,true,false
+2025-03-11,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.94,USD,true,false
+2025-03-12,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.07,USD,true,false
+2025-03-12,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.28,USD,true,false
+2025-03-12,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.79,USD,true,false
+2025-03-12,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.31,USD,true,false
+2025-03-12,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.56,USD,true,false
+2025-03-12,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.90,USD,true,false
+2025-03-13,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.45,USD,true,false
+2025-03-13,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.87,USD,true,false
+2025-03-13,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.96,USD,true,false
+2025-03-13,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.84,USD,true,false
+2025-03-13,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.95,USD,true,false
+2025-03-13,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.69,USD,true,false
+2025-03-14,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.84,USD,true,false
+2025-03-14,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.47,USD,true,false
+2025-03-14,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.11,USD,true,false
+2025-03-14,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.37,USD,true,false
+2025-03-14,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.17,USD,true,false
+2025-03-14,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.48,USD,true,false
+2025-03-15,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.81,USD,true,false
+2025-03-15,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.61,USD,true,false
+2025-03-15,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.60,USD,true,false
+2025-03-15,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.74,USD,true,false
+2025-03-15,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.44,USD,true,false
+2025-03-15,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,25.03,USD,true,false
+2025-03-16,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.67,USD,true,false
+2025-03-16,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.13,USD,true,false
+2025-03-16,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.84,USD,true,false
+2025-03-16,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.06,USD,true,false
+2025-03-16,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.12,USD,true,false
+2025-03-16,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.38,USD,true,false
+2025-03-17,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,132.49,USD,true,true
+2025-03-17,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,55.46,USD,true,true
+2025-03-17,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.44,USD,true,false
+2025-03-17,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.47,USD,true,false
+2025-03-17,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.68,USD,true,false
+2025-03-17,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.14,USD,true,false
+2025-03-18,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,39.77,USD,true,false
+2025-03-18,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.15,USD,true,false
+2025-03-18,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,61.36,USD,true,false
+2025-03-18,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.20,USD,true,false
+2025-03-18,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.47,USD,true,false
+2025-03-18,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.73,USD,true,false
+2025-03-19,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.32,USD,true,false
+2025-03-19,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.39,USD,true,false
+2025-03-19,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.20,USD,true,false
+2025-03-19,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.41,USD,true,false
+2025-03-19,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.45,USD,true,false
+2025-03-19,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.04,USD,true,false
+2025-03-20,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.71,USD,true,false
+2025-03-20,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.71,USD,true,false
+2025-03-20,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,64.35,USD,true,false
+2025-03-20,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.94,USD,true,false
+2025-03-20,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.84,USD,true,false
+2025-03-20,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.83,USD,true,false
+2025-03-21,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.09,USD,true,false
+2025-03-21,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.31,USD,true,false
+2025-03-21,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,66.49,USD,true,false
+2025-03-21,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.22,USD,true,false
+2025-03-21,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.24,USD,true,false
+2025-03-21,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.62,USD,true,false
+2025-03-22,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.43,USD,true,false
+2025-03-22,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.72,USD,true,false
+2025-03-22,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,187.99,USD,true,true
+2025-03-22,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.59,USD,true,false
+2025-03-22,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.52,USD,true,false
+2025-03-22,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.82,USD,true,false
+2025-03-23,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.29,USD,true,false
+2025-03-23,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.23,USD,true,false
+2025-03-23,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.26,USD,true,false
+2025-03-23,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.16,USD,true,false
+2025-03-23,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.19,USD,true,false
+2025-03-23,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.17,USD,true,false
+2025-03-24,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.74,USD,true,false
+2025-03-24,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.57,USD,true,false
+2025-03-24,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.85,USD,true,false
+2025-03-24,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.57,USD,true,false
+2025-03-24,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.57,USD,true,false
+2025-03-24,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.28,USD,true,false
+2025-03-25,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.03,USD,true,false
+2025-03-25,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,16.99,USD,true,false
+2025-03-25,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,61.75,USD,true,false
+2025-03-25,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.30,USD,true,false
+2025-03-25,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.36,USD,true,false
+2025-03-25,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,22.87,USD,true,false
+2025-03-26,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.57,USD,true,false
+2025-03-26,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.23,USD,true,false
+2025-03-26,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,62.59,USD,true,false
+2025-03-26,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.26,USD,true,false
+2025-03-26,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.52,USD,true,false
+2025-03-26,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.18,USD,true,false
+2025-03-27,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,41.33,USD,true,false
+2025-03-27,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.82,USD,true,false
+2025-03-27,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,64.74,USD,true,false
+2025-03-27,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.79,USD,true,false
+2025-03-27,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.92,USD,true,false
+2025-03-27,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.62,USD,true,false
+2025-03-28,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.71,USD,true,false
+2025-03-28,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.41,USD,true,false
+2025-03-28,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.91,USD,true,false
+2025-03-28,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.32,USD,true,false
+2025-03-28,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.31,USD,true,false
+2025-03-28,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.41,USD,true,false
+2025-03-29,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,43.68,USD,true,false
+2025-03-29,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.83,USD,true,false
+2025-03-29,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,67.41,USD,true,false
+2025-03-29,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.69,USD,true,false
+2025-03-29,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.41,USD,true,false
+2025-03-29,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.96,USD,true,false
+2025-03-30,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,42.55,USD,true,false
+2025-03-30,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,18.07,USD,true,false
+2025-03-30,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,65.65,USD,true,false
+2025-03-30,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,16.26,USD,true,false
+2025-03-30,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,12.08,USD,true,false
+2025-03-30,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,24.31,USD,true,false
+2025-03-31,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,40.99,USD,true,false
+2025-03-31,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,17.41,USD,true,false
+2025-03-31,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,63.24,USD,true,false
+2025-03-31,SYNTHETIC-000000-000000,analytics-dev,BigQuery,Storage,15.42,USD,true,false
+2025-03-31,SYNTHETIC-000000-000000,shared-platform,Cloud Storage,Standard storage,11.64,USD,true,false
+2025-03-31,SYNTHETIC-000000-000000,shared-platform,Cloud Logging,Log ingestion,23.42,USD,true,false

@@ -1,0 +1,4 @@
+usage_date,billing_account_id,project_id,service,sku,cost,currency,is_synthetic,injected_anomaly,injected_amount
+2025-03-17,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,vCPU-seconds,132.49,USD,true,true,92.00
+2025-03-17,SYNTHETIC-000000-000000,checkout-prod,Cloud Run,GiB-seconds,55.46,USD,true,true,38.00
+2025-03-22,SYNTHETIC-000000-000000,analytics-prod,BigQuery,Analysis,187.99,USD,true,true,120.00
