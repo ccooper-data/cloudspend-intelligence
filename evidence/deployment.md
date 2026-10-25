@@ -1,6 +1,6 @@
 # CloudSpend Intelligence V1 — live validation evidence
 
-Status: **identity and empty BigQuery dataset live; data and workloads not deployed**. Populate only with redacted, verified output. Never
+Status: **BigQuery synthetic-data validation live; application and automation workloads not deployed**. Populate only with redacted, verified output. Never
 commit billing account IDs, email addresses, access tokens, credentials,
 Terraform state, or private account screenshots.
 
@@ -44,12 +44,15 @@ Terraform state, or private account screenshots.
 - Dataset: `cloudspend_v1`, location `US`, labels `data_classification=synthetic` and `environment=portfolio`
 - Dataset tables before load: 0
 - BigQuery access evidence captured at (UTC): 2026-10-25T21:10:34Z
-- Synthetic rows loaded: expected 540; actual pending
-- Detector result rows: expected 2; actual pending
-- `2025-03-17 / Cloud Run / checkout-prod / vCPU-seconds`: pending
-- `2025-03-22 / BigQuery / analytics-prod / Analysis`: pending
-- BigQuery bytes processed: pending
-- Idempotent second execution produced the same rows: pending
+- Synthetic rows loaded: expected 540; actual 540
+- Detector result rows: expected 2; actual 2
+- `2025-03-17 / Cloud Run / checkout-prod / vCPU-seconds`: $187.95 daily, $59.46 median, 216.09% / $128.49 increase; top contributor $132.49
+- `2025-03-22 / BigQuery / analytics-prod / Analysis`: $204.58 daily, $80.05 median, 155.57% / $124.53 increase; top contributor $187.99
+- Successful validation: https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40234644298
+- Idempotent second execution produced the same rows: https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40234708958
+- BigQuery bytes processed per successful run: 89,298 bytes; reported billed bytes 40 MiB due to BigQuery minimums; each query capped at 100 MiB
+- Compatibility failures were bounded and preserved: reserved alias in run 40234417512; correlated subquery in run 40234526890
+- Live validation evidence captured at (UTC): 2026-10-25T21:17:41Z
 
 ## API validation
 
