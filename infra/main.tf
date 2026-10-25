@@ -24,7 +24,12 @@ resource "google_billing_budget" "monthly" {
   billing_account = var.billing_account_id
   display_name    = "cloudspend-v1-safety"
   budget_filter { projects = ["projects/${var.project_id}"] }
-  amount { specified_amount { currency_code = "USD" units = tostring(var.monthly_budget_usd) } }
+  amount {
+    specified_amount {
+      currency_code = "USD"
+      units         = tostring(var.monthly_budget_usd)
+    }
+  }
   threshold_rules { threshold_percent = 0.5 }
   threshold_rules { threshold_percent = 0.9 }
   threshold_rules { threshold_percent = 1.0 }
