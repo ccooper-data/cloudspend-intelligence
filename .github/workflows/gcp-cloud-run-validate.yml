@@ -34,7 +34,7 @@ jobs:
           urls="$(gcloud run services describe cloudspend-api \
             --project=cloudspend-intelligence-v1 --region=us-central1 \
             --format=json | jq -r '.metadata.annotations["run.googleapis.com/urls"]')"
-          url="$(jq -r 'fromjson | .[0]' <<< "$urls")"
+          url="$(jq -r '.[0]' <<< "$urls")"
           echo "url=$url" >> "$GITHUB_OUTPUT"
       - id: identity
         uses: google-github-actions/auth@v3
