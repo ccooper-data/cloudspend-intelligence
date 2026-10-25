@@ -31,9 +31,10 @@ jobs:
       - id: service
         name: Resolve the private service URL
         run: |
-          url="$(gcloud run services describe cloudspend-api \
+          urls="$(gcloud run services describe cloudspend-api \
             --project=cloudspend-intelligence-v1 --region=us-central1 \
-            --format='value(status.url)')"
+            --format=json | jq -r '.metadata.annotations["run.googleapis.com/urls"]')"
+          url="$(jq -r 'fromjson | .[0]' <<< "$urls")"
           echo "url=$url" >> "$GITHUB_OUTPUT"
       - id: identity
         uses: google-github-actions/auth@v3
