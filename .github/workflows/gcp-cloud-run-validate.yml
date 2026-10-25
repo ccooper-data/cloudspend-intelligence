@@ -57,7 +57,11 @@ jobs:
 
           authenticated_status="$(curl --silent --output /tmp/health.json --write-out '%{http_code}' \
             --header "Authorization: Bearer $IDENTITY_TOKEN" "$SERVICE_URL/healthz")"
-          test "$authenticated_status" = "200"
+          if test "$authenticated_status" != "200"; then
+            echo "Expected authenticated health check HTTP 200, got HTTP $authenticated_status" >&2
+            cat /tmp/health.json >&2
+            exit 1
+          fi
           python -c 'import json; assert json.load(open("/tmp/health.json")) == {"status": "ok"}'
 
           python - <<'PY'
