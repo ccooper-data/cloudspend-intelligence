@@ -82,6 +82,7 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('daily_cost > median_cost * 1.50', sql)
         self.assertIn('daily_cost - median_cost > 25.00', sql)
         self.assertIn('ORDER BY contributor_cost DESC, project_id ASC, sku ASC', sql)
+        self.assertNotIn(' AS current', sql)
 
     def test_monitoring_detects_failed_workflow_executions(self) -> None:
         monitoring = (ROOT / "infra" / "monitoring.tf").read_text(encoding="utf-8")

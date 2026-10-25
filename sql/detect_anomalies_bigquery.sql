@@ -11,18 +11,18 @@ WITH service_daily AS (
 ),
 history AS (
   SELECT
-    current.usage_date,
-    current.service,
-    current.daily_cost,
+    cur.usage_date,
+    cur.service,
+    cur.daily_cost,
     ARRAY(
       SELECT AS STRUCT prior.daily_cost, prior.usage_date
       FROM service_daily AS prior
-      WHERE prior.service = current.service
-        AND prior.usage_date >= DATE_SUB(current.usage_date, INTERVAL 14 DAY)
-        AND prior.usage_date < current.usage_date
+      WHERE prior.service = cur.service
+        AND prior.usage_date >= DATE_SUB(cur.usage_date, INTERVAL 14 DAY)
+        AND prior.usage_date < cur.usage_date
       ORDER BY prior.daily_cost, prior.usage_date
     ) AS prior_days
-  FROM service_daily AS current
+  FROM service_daily AS cur
 ),
 baselines AS (
   SELECT
