@@ -14,25 +14,24 @@ history AS (
     cur.usage_date,
     cur.service,
     cur.daily_cost,
-    ARRAY(
-      SELECT AS STRUCT prior.daily_cost, prior.usage_date
-      FROM service_daily AS prior
-      WHERE prior.service = cur.service
-        AND prior.usage_date >= DATE_SUB(cur.usage_date, INTERVAL 14 DAY)
-        AND prior.usage_date < cur.usage_date
-      ORDER BY prior.daily_cost, prior.usage_date
-    ) AS prior_days
+    ARRAY_AGG(prior.daily_cost IGNORE NULLS ORDER BY prior.daily_cost, prior.usage_date) AS prior_costs,
+    COUNT(prior.usage_date) AS history_days
   FROM service_daily AS cur
+  LEFT JOIN service_daily AS prior
+    ON prior.service = cur.service
+   AND prior.usage_date >= DATE_SUB(cur.usage_date, INTERVAL 14 DAY)
+   AND prior.usage_date < cur.usage_date
+  GROUP BY cur.usage_date, cur.service, cur.daily_cost
 ),
 baselines AS (
   SELECT
     usage_date,
     service,
     daily_cost,
-    ARRAY_LENGTH(prior_days) AS history_days,
-    ROUND((prior_days[OFFSET(6)].daily_cost + prior_days[OFFSET(7)].daily_cost) / 2, 2) AS median_cost
+    history_days,
+    ROUND((prior_costs[OFFSET(6)] + prior_costs[OFFSET(7)]) / 2, 2) AS median_cost
   FROM history
-  WHERE ARRAY_LENGTH(prior_days) = 14
+  WHERE history_days = 14
 ),
 flagged AS (
   SELECT
