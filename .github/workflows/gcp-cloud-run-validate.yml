@@ -57,7 +57,7 @@ jobs:
           esac
 
           authenticated_status="$(curl --silent --output /tmp/health.json --write-out '%{http_code}' \
-            --header "Authorization: Bearer $IDENTITY_TOKEN" "$SERVICE_URL/healthz")"
+            --header "X-Serverless-Authorization: Bearer $IDENTITY_TOKEN" "$SERVICE_URL/healthz")"
           if test "$authenticated_status" != "200"; then
             echo "Expected authenticated health check HTTP 200, got HTTP $authenticated_status" >&2
             cat /tmp/health.json >&2
@@ -76,7 +76,7 @@ jobs:
           PY
 
           curl --fail --silent --show-error \
-            --header "Authorization: Bearer $IDENTITY_TOKEN" \
+            --header "X-Serverless-Authorization: Bearer $IDENTITY_TOKEN" \
             --header 'Content-Type: application/json' \
             --data-binary @/tmp/request.json \
             "$SERVICE_URL/v1/anomalies" > /tmp/response.json
