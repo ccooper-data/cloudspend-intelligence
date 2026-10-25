@@ -131,7 +131,7 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('environment: gcp-demo', workflow)
         self.assertIn('id-token: write', workflow)
         self.assertIn('gcloud auth print-identity-token', workflow)
-        self.assertIn('401|403', workflow)
+        self.assertIn('401|403|404', workflow)
         self.assertIn('result["anomaly_count"] == 2', workflow)
         self.assertIn('2025-03-17', workflow)
         self.assertIn('2025-03-22', workflow)
