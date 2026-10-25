@@ -5,15 +5,11 @@ terraform {
   }
 }
 
-variable "project_id" { type = string }
-variable "billing_account_id" { type = string; sensitive = true }
-variable "monthly_budget_usd" { type = number; default = 25 }
-variable "daily_query_bytes" { type = number; default = 10737418240 }
-
 provider "google" { project = var.project_id }
 
 # This quota is a guardrail, not a guarantee against charges.
 resource "google_service_usage_consumer_quota_override" "bigquery_daily_bytes" {
+  count          = var.deploy_workloads ? 1 : 0
   project        = var.project_id
   service        = "bigquery.googleapis.com"
   metric         = urlencode("bigquery.googleapis.com/quota/query/usage")

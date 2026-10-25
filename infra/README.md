@@ -15,3 +15,23 @@ Important: budgets send notifications; they do not automatically cap spend. Quot
 
 The budget is an early-warning threshold, not authorization to spend `$25`. The operating target remains `$0` out of pocket, and the account must not be upgraded from the Free Trial without explicit approval.
 
+## Two-stage safety gate
+
+The warning budget is the only resource intended for the first reviewed apply.
+Every workload, API enablement, service account, quota override, dataset, table,
+Cloud Run service, Workflow, and Scheduler job is guarded by
+`deploy_workloads = false` by default. The flag must not be enabled until the
+project-scoped budget and all three email thresholds are visibly confirmed.
+
+When the gate is eventually enabled, the container image must use an immutable
+`@sha256:` digest. Cloud Run has zero minimum instances and one maximum
+instance. No public IAM principal is granted access. The daily Workflow caps
+each BigQuery job at 10 GiB, and Scheduler permits only one retry.
+
+GitHub Actions uses Workload Identity Federation. The provider accepts tokens
+only for `ccooper-data/cloudspend-intelligence`, the numeric owner ID supplied
+at deployment time, and `refs/heads/main`; no service-account key is created.
+
+These controls reduce risk but do not create a hard spending cap. A reviewed
+plan is required before any apply.
+

@@ -1,0 +1,23 @@
+main:
+  params: [args]
+  steps:
+    - run_detector_query:
+        call: googleapis.bigquery.v2.jobs.query
+        args:
+          projectId: ${project_id}
+          body:
+            location: US
+            useLegacySql: false
+            maximumBytesBilled: "10737418240"
+            timeoutMs: 60000
+            query: ${detector_query_json}
+        result: query_result
+    - require_completion:
+        switch:
+          - condition: $${query_result.jobComplete == true}
+            next: return_result
+        raise: "BigQuery detector job did not complete within the bounded workflow call"
+    - return_result:
+        return:
+          jobComplete: $${query_result.jobComplete}
+          totalRows: $${default(map.get(query_result, "totalRows"), "0")}
