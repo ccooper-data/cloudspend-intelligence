@@ -17,7 +17,8 @@ Terraform state, or private account screenshots.
 
 ## Reviewed infrastructure
 
-- Applied commit SHA: pending
+- Identity commit SHA: `8c65667118d25356339e2e8caa06f5d31730b7ce`
+- CI: passed — https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40233601200
 - Terraform plan summary: pending
 - Enabled before workloads: Service Usage, Billing Budgets, BigQuery, IAM Credentials, and Security Token Service APIs only
 - BigQuery project quota: 10 GiB/day — verified effective limit 10,240 MiB
@@ -27,8 +28,10 @@ Terraform state, or private account screenshots.
 - Previous `cloudspend-github` service account and `github-actions` pool/provider: soft-deleted; recoverable for 30 days from 2026-10-25
 - Active GitHub identity: `cloudspend-demo-github` with `github-demo/cloudspend-demo`
 - Federation principal: restricted to repository, numeric owner ID, `main`, and GitHub environment `gcp-demo`
+- Keyless token impersonation: passed on attempt 2 after IAM propagation — https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40233614291
 - Active identity project roles: 0; deployment permissions deferred for separate review
 - User-managed service-account keys: 0
+- Identity evidence captured at (UTC): 2026-10-25T21:04:04Z
 - Scheduler: daily, UTC, one retry — pending
 - Workflow query maximum: 10 GiB — pending
 - Failure notification channel verified: pending
