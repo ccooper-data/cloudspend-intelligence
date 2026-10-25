@@ -54,7 +54,10 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn("assertion.repository == '${var.github_repository}'", iam)
         self.assertIn("assertion.repository_owner_id == '${var.github_repository_owner_id}'", iam)
         self.assertIn("assertion.ref == 'refs/heads/main'", iam)
-        self.assertIn('environment:${var.github_environment}', iam)
+        self.assertIn('"attribute.environment"', iam)
+        self.assertIn("assertion.environment == '${var.github_environment}'", iam)
+        self.assertIn('principalSet://iam.googleapis.com/', iam)
+        self.assertIn('/attribute.environment/${var.github_environment}', iam)
         self.assertNotIn('google_project_iam_member" "github_deployer', iam)
         self.assertNotIn('google_service_account_key', iam)
 

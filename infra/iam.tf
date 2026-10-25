@@ -58,9 +58,10 @@ resource "google_iam_workload_identity_pool_provider" "github" {
     "attribute.repository"          = "assertion.repository"
     "attribute.repository_owner_id" = "assertion.repository_owner_id"
     "attribute.ref"                 = "assertion.ref"
+    "attribute.environment"         = "assertion.environment"
   }
 
-  attribute_condition = "assertion.repository == '${var.github_repository}' && assertion.repository_owner_id == '${var.github_repository_owner_id}' && assertion.ref == 'refs/heads/main'"
+  attribute_condition = "assertion.repository == '${var.github_repository}' && assertion.repository_owner_id == '${var.github_repository_owner_id}' && assertion.ref == 'refs/heads/main' && assertion.environment == '${var.github_environment}'"
 
   oidc { issuer_uri = "https://token.actions.githubusercontent.com" }
 }
@@ -70,7 +71,7 @@ resource "google_service_account_iam_member" "github_federation" {
 
   service_account_id = google_service_account.github_deployer[0].name
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principal://iam.googleapis.com/projects/${data.google_project.current.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.github[0].workload_identity_pool_id}/subject/repo:${var.github_repository}:environment:${var.github_environment}"
+  member             = "principalSet://iam.googleapis.com/projects/${data.google_project.current.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.github[0].workload_identity_pool_id}/attribute.environment/${var.github_environment}"
 }
 
 # Bootstrap deliberately grants no project-level roles. Workload permissions
