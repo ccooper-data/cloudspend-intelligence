@@ -87,7 +87,7 @@ The live design is synthetic CSV → BigQuery → bounded Workflow query → ano
 
 [`infra/`](infra/) defaults both identity bootstrap and workloads to off. It defines a `$25` warning budget, 10 GiB/day BigQuery quota, digest-pinned scale-to-zero Cloud Run service, bounded Scheduler/Workflow, separate runtime identities, branch-and-repository-scoped GitHub OIDC federation, and workflow-failure alerting. CI validates Terraform without credentials. The manual cloud workflow can create a plan but deliberately cannot apply it.
 
-Budget alerts do not stop spend, and quotas cannot guarantee a zero bill. The operating target is `$0` out of pocket; the trial must not be upgraded. Live changes require visible budget evidence and plan review. Gemini and other generative-AI services are excluded.
+Budget alerts do not stop spend, and quotas cannot guarantee a zero bill. The operating target is **`$0` out of pocket**. The `$25` project budget is an early-warning alert, not permission to spend. The **`$50` contingency ceiling** is a manual stop limit, not an automatically enforced cap or pre-authorized spend; any out-of-pocket charge requires explicit approval first. The trial must not be upgraded. Live changes require visible budget evidence and plan review. Gemini and other generative-AI services are excluded.
 
 See the [architecture](docs/architecture.md), [deployment and teardown runbook](docs/gcp-deployment-runbook.md), and [ADR 0001](docs/adr/0001-local-deterministic-v1.md).
 

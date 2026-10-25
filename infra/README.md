@@ -13,7 +13,7 @@ Proposed controls:
 
 Important: budgets send notifications; they do not automatically cap spend. Quotas reduce risk but are not a guarantee of $0 cost.
 
-The budget is an early-warning threshold, not authorization to spend `$25`. The operating target remains `$0` out of pocket, and the account must not be upgraded from the Free Trial without explicit approval.
+The budget is an early-warning threshold, not authorization to spend `$25`. The operating target remains `$0` out of pocket. The `$50` contingency ceiling is a manual stop limit, not an automatically enforced cap or pre-authorized spend; any out-of-pocket charge requires explicit approval first. The account must not be upgraded from the Free Trial without explicit approval.
 
 ## Two-stage safety gate
 

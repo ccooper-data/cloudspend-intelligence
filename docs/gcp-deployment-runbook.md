@@ -12,6 +12,9 @@ Status: **prepared, not yet applied**. The live project is
 4. Review a Terraform plan. Any unexpected service, public principal, minimum
    Cloud Run instance, or unbounded query is a stop condition.
 5. Never enable Gemini, Vertex AI, GKE, VMs, or unrelated APIs.
+6. Treat `$0` out of pocket as the operating target. The `$25` budget is an
+   early warning; the `$50` contingency ceiling is a manual stop limit, not
+   pre-authorized spend. Obtain explicit approval before any out-of-pocket cost.
 
 ## Staged deployment
 
