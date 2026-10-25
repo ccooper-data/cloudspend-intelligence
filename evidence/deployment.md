@@ -29,6 +29,8 @@ Terraform state, or private account screenshots.
 - Active GitHub identity: `cloudspend-demo-github` with `github-demo/cloudspend-demo`
 - Federation principal: restricted to repository, numeric owner ID, `main`, and GitHub environment `gcp-demo`
 - Keyless token impersonation: passed on attempt 2 after IAM propagation — https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40233614291
+- Obsolete GitHub environment `gcp-production`: deleted after confirming its variables referenced only the soft-deleted identity
+- Active GitHub environments: `gcp-demo` only
 - Active identity project roles: 0; deployment permissions deferred for separate review
 - User-managed service-account keys: 0
 - Identity evidence captured at (UTC): 2026-10-25T21:04:04Z
