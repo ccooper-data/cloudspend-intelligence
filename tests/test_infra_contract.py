@@ -54,12 +54,15 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn("assertion.repository == '${var.github_repository}'", iam)
         self.assertIn("assertion.repository_owner_id == '${var.github_repository_owner_id}'", iam)
         self.assertIn("assertion.ref == 'refs/heads/main'", iam)
+        self.assertIn('environment:${var.github_environment}', iam)
+        self.assertNotIn('google_project_iam_member" "github_deployer', iam)
         self.assertNotIn('google_service_account_key', iam)
 
         check = (ROOT / ".github" / "workflows" / "gcp-identity-check.yml").read_text(encoding="utf-8")
         self.assertIn('id-token: write', check)
-        self.assertIn('environment: gcp-production', check)
+        self.assertIn('environment: gcp-demo', check)
         self.assertIn('google-github-actions/auth@v3', check)
+        self.assertIn('gcloud auth print-access-token >/dev/null', check)
         self.assertNotIn('service_account_key', check)
 
     def test_daily_automation_is_bounded_and_idempotent(self) -> None:

@@ -19,7 +19,7 @@ jobs:
   plan:
     if: inputs.confirm == 'PLAN'
     runs-on: ubuntu-latest
-    environment: gcp-production
+    environment: gcp-demo
     steps:
       - uses: actions/checkout@v7
       - uses: google-github-actions/auth@v3

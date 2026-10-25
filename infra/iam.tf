@@ -30,17 +30,17 @@ resource "google_service_account" "github_deployer" {
   count = var.create_deployment_identity ? 1 : 0
 
   project      = var.project_id
-  account_id   = "cloudspend-github"
-  display_name = "Keyless GitHub Actions deployer"
+  account_id   = "cloudspend-demo-github"
+  display_name = "CloudSpend demo GitHub identity"
 }
 
 resource "google_iam_workload_identity_pool" "github" {
   count = var.create_deployment_identity ? 1 : 0
 
   project                   = var.project_id
-  workload_identity_pool_id = "github-actions"
-  display_name              = "GitHub Actions"
-  description               = "Keyless federation for the CloudSpend repository only."
+  workload_identity_pool_id = "github-demo"
+  display_name              = "GitHub Demo"
+  description               = "Keyless federation for the CloudSpend demo environment only."
 
   depends_on = [google_project_service.identity]
 }
@@ -50,8 +50,8 @@ resource "google_iam_workload_identity_pool_provider" "github" {
 
   project                            = var.project_id
   workload_identity_pool_id          = google_iam_workload_identity_pool.github[0].workload_identity_pool_id
-  workload_identity_pool_provider_id = "cloudspend-main"
-  display_name                       = "CloudSpend main branch"
+  workload_identity_pool_provider_id = "cloudspend-demo"
+  display_name                       = "CloudSpend demo"
 
   attribute_mapping = {
     "google.subject"                = "assertion.sub"
@@ -70,35 +70,11 @@ resource "google_service_account_iam_member" "github_federation" {
 
   service_account_id = google_service_account.github_deployer[0].name
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principalSet://iam.googleapis.com/projects/${data.google_project.current.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.github[0].workload_identity_pool_id}/attribute.repository/${var.github_repository}"
+  member             = "principal://iam.googleapis.com/projects/${data.google_project.current.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.github[0].workload_identity_pool_id}/subject/repo:${var.github_repository}:environment:${var.github_environment}"
 }
 
-locals {
-  github_deployer_roles = toset([
-    "roles/artifactregistry.admin",
-    "roles/bigquery.dataOwner",
-    "roles/bigquery.jobUser",
-    "roles/cloudscheduler.admin",
-    "roles/iam.serviceAccountAdmin",
-    "roles/iam.serviceAccountUser",
-    "roles/monitoring.alertPolicyEditor",
-    "roles/monitoring.notificationChannelEditor",
-    "roles/resourcemanager.projectIamAdmin",
-    "roles/run.admin",
-    "roles/serviceusage.serviceUsageAdmin",
-    "roles/workflows.admin",
-  ])
-}
-
-# These bootstrap permissions are bounded to one project and an environment-
-# protected, main-branch-only GitHub identity. No user-managed key is created.
-resource "google_project_iam_member" "github_deployer" {
-  for_each = var.create_deployment_identity ? local.github_deployer_roles : toset([])
-
-  project = var.project_id
-  role    = each.value
-  member  = "serviceAccount:${google_service_account.github_deployer[0].email}"
-}
+# Bootstrap deliberately grants no project-level roles. Workload permissions
+# are added only in a separately reviewed deployment stage.
 
 resource "google_project_iam_member" "workflow_bigquery_job_user" {
   count = var.deploy_workloads ? 1 : 0

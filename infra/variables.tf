@@ -86,6 +86,12 @@ variable "github_repository_owner_id" {
   }
 }
 
+variable "github_environment" {
+  description = "GitHub environment included in the OIDC subject for the demo identity."
+  type        = string
+  default     = "gcp-demo"
+}
+
 variable "alert_email" {
   description = "Operational alert recipient. Supply via an uncommitted tfvars file."
   type        = string

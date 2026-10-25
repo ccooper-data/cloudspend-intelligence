@@ -10,14 +10,12 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    environment: gcp-production
+    environment: gcp-demo
     steps:
       - uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
       - uses: google-github-actions/setup-gcloud@v3
-      - name: Verify keyless project access
-        run: >-
-          gcloud projects describe cloudspend-intelligence-v1
-          --format='value(projectId)'
+      - name: Verify keyless token impersonation
+        run: gcloud auth print-access-token >/dev/null

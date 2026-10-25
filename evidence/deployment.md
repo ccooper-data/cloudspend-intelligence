@@ -24,8 +24,11 @@ Terraform state, or private account screenshots.
 - Cloud Run scaling: min 0 / max 1 — pending live verification
 - Public Cloud Run principals absent: pending
 - GitHub federation: active; restricted to `ccooper-data/cloudspend-intelligence`, numeric owner ID, and `refs/heads/main`
-- GitHub environment: `gcp-production`, restricted to `main`
-- User-managed service-account keys absent: verified for `cloudspend-github`
+- Previous `cloudspend-github` service account and `github-actions` pool/provider: soft-deleted; recoverable for 30 days from 2026-10-25
+- Active GitHub identity: `cloudspend-demo-github` with `github-demo/cloudspend-demo`
+- Federation principal: restricted to repository, numeric owner ID, `main`, and GitHub environment `gcp-demo`
+- Active identity project roles: 0; deployment permissions deferred for separate review
+- User-managed service-account keys: 0
 - Scheduler: daily, UTC, one retry — pending
 - Workflow query maximum: 10 GiB — pending
 - Failure notification channel verified: pending

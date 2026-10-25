@@ -29,7 +29,7 @@ verified.
 With `create_deployment_identity=true` and `deploy_workloads=false`, create the
 GitHub Workload Identity pool/provider and deployer service account. The OIDC
 condition accepts only the numeric GitHub owner ID, this repository, and the
-`main` branch. Create a GitHub environment named `gcp-production` with required
+`main` branch. Create a GitHub environment named `gcp-demo` with required
 reviewers, then set the non-secret provider/service-account/state-bucket
 variables. Store the billing account ID and alert email as GitHub secrets.
 
@@ -49,7 +49,7 @@ keyless and intentionally has no apply step. Confirm:
 ### Stage 3 — deploy and validate
 
 Only after plan approval, add a separately reviewed apply job protected by the
-`gcp-production` environment. Load `data/synthetic_gcp_billing.csv`, run the
+`gcp-demo` environment. Load `data/synthetic_gcp_billing.csv`, run the
 Workflow once, and compare the BigQuery results with the committed ground truth.
 Obtain an identity token before calling the private Cloud Run API; verify an
 unauthenticated request is rejected.
