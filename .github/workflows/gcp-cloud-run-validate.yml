@@ -35,14 +35,18 @@ jobs:
             --project=cloudspend-intelligence-v1 --region=us-central1 \
             --format=json | jq -r '.metadata.annotations["run.googleapis.com/urls"]')"
           url="$(jq -r '.[0]' <<< "$urls")"
+          audience="$(gcloud run services describe cloudspend-api \
+            --project=cloudspend-intelligence-v1 --region=us-central1 \
+            --format='value(status.url)')"
           echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "audience=$audience" >> "$GITHUB_OUTPUT"
       - id: identity
         uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
           token_format: id_token
-          id_token_audience: ${{ steps.service.outputs.url }}
+          id_token_audience: ${{ steps.service.outputs.audience }}
       - name: Verify private, authenticated, deterministic behavior
         env:
           SERVICE_URL: ${{ steps.service.outputs.url }}
