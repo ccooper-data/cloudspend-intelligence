@@ -6,21 +6,21 @@ Terraform state, or private account screenshots.
 
 ## Cost gate
 
-- Free Trial active and not upgraded: pending
-- Out-of-pocket charges before deployment: pending
+- Free Trial active and not upgraded: verified in Billing console
+- Out-of-pocket charges before deployment: `$0.00` verified in Billing console
 - Budget name: `cloudspend-v1-safety`
 - Scope: `cloudspend-intelligence-v1` only
 - Amount: `$25` warning threshold; not spending authorization
 - Actual-spend thresholds: 50%, 90%, 100%
-- Default billing IAM email recipients enabled: pending
-- Evidence captured at (UTC): pending
+- Default billing IAM email recipients enabled: verified (notification rule leaves defaults enabled)
+- Evidence captured at (UTC): 2026-10-25T20:45:58Z
 
 ## Reviewed infrastructure
 
 - Applied commit SHA: pending
 - Terraform plan summary: pending
-- Enabled API allow-list reviewed: pending
-- BigQuery project quota: 10 GiB/day — pending live verification
+- Enabled before workloads: Service Usage, Billing Budgets, and BigQuery APIs only
+- BigQuery project quota: 10 GiB/day — verified effective limit 10,240 MiB
 - Cloud Run scaling: min 0 / max 1 — pending live verification
 - Public Cloud Run principals absent: pending
 - User-managed service-account keys absent: pending

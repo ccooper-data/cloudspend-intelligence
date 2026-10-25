@@ -22,7 +22,8 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         terraform = (ROOT / "infra" / "main.tf").read_text(encoding="utf-8")
         variables = (ROOT / "infra" / "variables.tf").read_text(encoding="utf-8")
 
-        self.assertIn('default     = 10737418240', variables)
+        self.assertIn('variable "daily_query_mib"', variables)
+        self.assertIn('default     = 10240', variables)
         self.assertIn('limit          = urlencode("/d/project")', terraform)
         self.assertIn('force          = false', terraform)
         self.assertIn('count          = var.deploy_workloads ? 1 : 0', terraform)

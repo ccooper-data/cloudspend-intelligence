@@ -15,10 +15,10 @@ variable "monthly_budget_usd" {
   default     = 25
 }
 
-variable "daily_query_bytes" {
-  description = "Project-wide BigQuery on-demand query quota in bytes per day."
+variable "daily_query_mib" {
+  description = "Project-wide BigQuery on-demand query quota in MiB per day."
   type        = number
-  default     = 10737418240
+  default     = 10240
 }
 
 variable "region" {

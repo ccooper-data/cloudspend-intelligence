@@ -22,7 +22,7 @@ resource "google_service_usage_consumer_quota_override" "bigquery_daily_bytes" {
   service        = "bigquery.googleapis.com"
   metric         = urlencode("bigquery.googleapis.com/quota/query/usage")
   limit          = urlencode("/d/project")
-  override_value = tostring(var.daily_query_bytes)
+  override_value = tostring(var.daily_query_mib)
   force          = false
 }
 
