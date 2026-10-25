@@ -1,6 +1,6 @@
 # CloudSpend Intelligence V1 — live validation evidence
 
-Status: **not deployed**. Populate only with redacted, verified output. Never
+Status: **identity bootstrap live; workloads not deployed**. Populate only with redacted, verified output. Never
 commit billing account IDs, email addresses, access tokens, credentials,
 Terraform state, or private account screenshots.
 
@@ -19,11 +19,13 @@ Terraform state, or private account screenshots.
 
 - Applied commit SHA: pending
 - Terraform plan summary: pending
-- Enabled before workloads: Service Usage, Billing Budgets, and BigQuery APIs only
+- Enabled before workloads: Service Usage, Billing Budgets, BigQuery, IAM Credentials, and Security Token Service APIs only
 - BigQuery project quota: 10 GiB/day — verified effective limit 10,240 MiB
 - Cloud Run scaling: min 0 / max 1 — pending live verification
 - Public Cloud Run principals absent: pending
-- User-managed service-account keys absent: pending
+- GitHub federation: active; restricted to `ccooper-data/cloudspend-intelligence`, numeric owner ID, and `refs/heads/main`
+- GitHub environment: `gcp-production`, restricted to `main`
+- User-managed service-account keys absent: verified for `cloudspend-github`
 - Scheduler: daily, UTC, one retry — pending
 - Workflow query maximum: 10 GiB — pending
 - Failure notification channel verified: pending

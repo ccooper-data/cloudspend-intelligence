@@ -4,9 +4,21 @@ variable "project_id" {
 }
 
 variable "billing_account_id" {
-  description = "Billing account used only to create the project-scoped warning budget."
+  description = "Billing account used only when Terraform is explicitly managing the warning budget."
   type        = string
   sensitive   = true
+  default     = ""
+
+  validation {
+    condition     = !var.manage_budget || length(trimspace(var.billing_account_id)) > 0
+    error_message = "Set billing_account_id only when manage_budget is true."
+  }
+}
+
+variable "manage_budget" {
+  description = "Manage the warning budget in Terraform. Leave false when adopting a budget created during the manual cost gate."
+  type        = bool
+  default     = false
 }
 
 variable "monthly_budget_usd" {

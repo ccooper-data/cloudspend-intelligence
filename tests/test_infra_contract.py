@@ -11,6 +11,8 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         variables = (ROOT / "infra" / "variables.tf").read_text(encoding="utf-8")
 
         self.assertIn('default     = 25', variables)
+        self.assertIn('variable "manage_budget"', variables)
+        self.assertIn('count = var.manage_budget ? 1 : 0', terraform)
         self.assertIn('display_name    = "cloudspend-v1-safety"', terraform)
         self.assertIn('projects = ["projects/${data.google_project.current.number}"]', terraform)
         self.assertEqual(terraform.count("threshold_rules"), 3)
@@ -53,6 +55,12 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn("assertion.repository_owner_id == '${var.github_repository_owner_id}'", iam)
         self.assertIn("assertion.ref == 'refs/heads/main'", iam)
         self.assertNotIn('google_service_account_key', iam)
+
+        check = (ROOT / ".github" / "workflows" / "gcp-identity-check.yml").read_text(encoding="utf-8")
+        self.assertIn('id-token: write', check)
+        self.assertIn('environment: gcp-production', check)
+        self.assertIn('google-github-actions/auth@v3', check)
+        self.assertNotIn('service_account_key', check)
 
     def test_daily_automation_is_bounded_and_idempotent(self) -> None:
         platform = (ROOT / "infra" / "platform.tf").read_text(encoding="utf-8")

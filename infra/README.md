@@ -1,6 +1,9 @@
-# Future infrastructure — plan only
+# Staged infrastructure
 
-Nothing in this directory has been initialized, planned, applied, or deployed. It documents a possible GCP phase after explicit approval and funding.
+The warning budget, BigQuery quota, and keyless GitHub identity have been
+validated live. Workload resources remain disabled. The existing warning budget
+was created during the manual cost gate, so `manage_budget` defaults to `false`
+to prevent a later plan from trying to create a duplicate.
 
 Proposed controls:
 
