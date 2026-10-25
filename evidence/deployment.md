@@ -1,6 +1,6 @@
 # CloudSpend Intelligence V1 — live validation evidence
 
-Status: **identity bootstrap live; workloads not deployed**. Populate only with redacted, verified output. Never
+Status: **identity and empty BigQuery dataset live; data and workloads not deployed**. Populate only with redacted, verified output. Never
 commit billing account IDs, email addresses, access tokens, credentials,
 Terraform state, or private account screenshots.
 
@@ -31,7 +31,8 @@ Terraform state, or private account screenshots.
 - Keyless token impersonation: passed on attempt 2 after IAM propagation — https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40233614291
 - Obsolete GitHub environment `gcp-production`: deleted after confirming its variables referenced only the soft-deleted identity
 - Active GitHub environments: `gcp-demo` only
-- Active identity project roles: 0; deployment permissions deferred for separate review
+- Active identity project roles: `roles/bigquery.jobUser` only
+- Dataset-scoped identity role: `roles/bigquery.dataEditor` on `cloudspend_v1` only
 - User-managed service-account keys: 0
 - Identity evidence captured at (UTC): 2026-10-25T21:04:04Z
 - Scheduler: daily, UTC, one retry — pending
@@ -40,6 +41,9 @@ Terraform state, or private account screenshots.
 
 ## Data and detector
 
+- Dataset: `cloudspend_v1`, location `US`, labels `data_classification=synthetic` and `environment=portfolio`
+- Dataset tables before load: 0
+- BigQuery access evidence captured at (UTC): 2026-10-25T21:10:34Z
 - Synthetic rows loaded: expected 540; actual pending
 - Detector result rows: expected 2; actual pending
 - `2025-03-17 / Cloud Run / checkout-prod / vCPU-seconds`: pending
