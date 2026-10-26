@@ -45,6 +45,19 @@ variable "deploy_workloads" {
   default     = false
 }
 
+variable "enable_scheduler" {
+  description = "Separate opt-in gate for automatic daily execution. Keep false during manual validation."
+  type        = bool
+  default     = false
+}
+
+check "scheduler_requires_workloads" {
+  assert {
+    condition     = !var.enable_scheduler || var.deploy_workloads
+    error_message = "Cloud Scheduler cannot be enabled unless workloads are explicitly enabled."
+  }
+}
+
 variable "create_deployment_identity" {
   description = "Separate bootstrap gate for the keyless GitHub deployment identity."
   type        = bool

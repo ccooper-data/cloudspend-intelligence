@@ -9,9 +9,12 @@ locals {
     "bigquery.googleapis.com",
     "monitoring.googleapis.com",
     "run.googleapis.com",
-    "cloudscheduler.googleapis.com",
     "workflowexecutions.googleapis.com",
     "workflows.googleapis.com",
+  ])
+
+  scheduler_services = toset([
+    "cloudscheduler.googleapis.com",
   ])
 }
 
@@ -25,6 +28,14 @@ resource "google_project_service" "identity" {
 
 resource "google_project_service" "required" {
   for_each = var.deploy_workloads ? local.required_services : toset([])
+
+  project            = var.project_id
+  service            = each.value
+  disable_on_destroy = false
+}
+
+resource "google_project_service" "scheduler" {
+  for_each = var.deploy_workloads && var.enable_scheduler ? local.scheduler_services : toset([])
 
   project            = var.project_id
   service            = each.value
@@ -176,7 +187,7 @@ resource "google_workflows_workflow" "daily" {
 }
 
 resource "google_cloud_scheduler_job" "daily" {
-  count = var.deploy_workloads ? 1 : 0
+  count = var.deploy_workloads && var.enable_scheduler ? 1 : 0
 
   project          = var.project_id
   region           = var.region
@@ -207,5 +218,5 @@ resource "google_cloud_scheduler_job" "daily" {
     }
   }
 
-  depends_on = [google_project_service.required]
+  depends_on = [google_project_service.scheduler]
 }

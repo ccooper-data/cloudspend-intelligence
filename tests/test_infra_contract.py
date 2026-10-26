@@ -70,9 +70,16 @@ class InfrastructureGuardrailTests(unittest.TestCase):
 
     def test_daily_automation_is_bounded_and_idempotent(self) -> None:
         platform = (ROOT / "infra" / "platform.tf").read_text(encoding="utf-8")
+        variables = (ROOT / "infra" / "variables.tf").read_text(encoding="utf-8")
+        iam = (ROOT / "infra" / "iam.tf").read_text(encoding="utf-8")
         workflow = (ROOT / "infra" / "workflow.yaml.tftpl").read_text(encoding="utf-8")
         sql = (ROOT / "sql" / "detect_anomalies_bigquery.sql").read_text(encoding="utf-8")
 
+        self.assertIn('variable "enable_scheduler"', variables)
+        self.assertIn('check "scheduler_requires_workloads"', variables)
+        self.assertIn('var.deploy_workloads && var.enable_scheduler', platform)
+        self.assertIn('var.deploy_workloads && var.enable_scheduler', iam)
+        self.assertNotIn('"cloudscheduler.googleapis.com",\n    "workflowexecutions.googleapis.com"', platform)
         self.assertIn('schedule         = "0 6 * * *"', platform)
         self.assertIn('retry_count          = 1', platform)
         self.assertIn('attempt_deadline = "60s"', platform)
@@ -84,6 +91,25 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('daily_cost - median_cost > 25.00', sql)
         self.assertIn('ORDER BY contributor_cost DESC, project_id ASC, sku ASC', sql)
         self.assertNotIn(' AS current', sql)
+
+    def test_manual_workflow_deploy_and_run_are_explicit(self) -> None:
+        deploy = (ROOT / ".github" / "workflows" / "gcp-workflow-deploy.yml").read_text(encoding="utf-8")
+        run = (ROOT / ".github" / "workflows" / "gcp-workflow-run.yml").read_text(encoding="utf-8")
+        renderer = (ROOT / "scripts" / "render_workflow.py").read_text(encoding="utf-8")
+
+        for workflow in (deploy, run):
+            self.assertIn('environment: gcp-demo', workflow)
+            self.assertIn('id-token: write', workflow)
+            self.assertIn('google-github-actions/auth@v3', workflow)
+            self.assertNotIn('service_account_key', workflow)
+            self.assertNotIn('cloud scheduler', workflow.lower())
+        self.assertIn("inputs.confirm == 'DEPLOY_MANUAL_WORKFLOW'", deploy)
+        self.assertIn('gcloud workflows deploy cloudspend-daily', deploy)
+        self.assertIn('--call-log-level=log-errors-only', deploy)
+        self.assertIn("inputs.confirm == 'RUN_MANUAL_WORKFLOW'", run)
+        self.assertIn('gcloud workflows run cloudspend-daily', run)
+        self.assertIn('--maximum_bytes_billed=104857600', run)
+        self.assertIn('.replace("$${", "${")', renderer)
 
     def test_monitoring_detects_failed_workflow_executions(self) -> None:
         monitoring = (ROOT / "infra" / "monitoring.tf").read_text(encoding="utf-8")

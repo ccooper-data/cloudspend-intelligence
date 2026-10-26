@@ -19,7 +19,7 @@ resource "google_service_account" "workflow" {
 }
 
 resource "google_service_account" "scheduler" {
-  count = var.deploy_workloads ? 1 : 0
+  count = var.deploy_workloads && var.enable_scheduler ? 1 : 0
 
   project      = var.project_id
   account_id   = "cloudspend-scheduler"
@@ -95,7 +95,7 @@ resource "google_bigquery_dataset_iam_member" "workflow_data_editor" {
 }
 
 resource "google_project_iam_member" "scheduler_workflow_invoker" {
-  count = var.deploy_workloads ? 1 : 0
+  count = var.deploy_workloads && var.enable_scheduler ? 1 : 0
 
   project = var.project_id
   role    = "roles/workflows.invoker"

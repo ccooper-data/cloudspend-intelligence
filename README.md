@@ -2,9 +2,9 @@
 
 [![CI](https://github.com/ccooper-data/cloudspend-intelligence/actions/workflows/ci.yml/badge.svg)](https://github.com/ccooper-data/cloudspend-intelligence/actions/workflows/ci.yml)
 
-**[Watch the 64-second project demo](https://youtu.be/BjCXFz_tLf8)** — explicitly synthetic data, no LLM, and no deployed workload resources.
+**[Watch the 64-second project demo](https://youtu.be/BjCXFz_tLf8)** — explicitly synthetic data and no LLM.
 
-A local-first portfolio project that detects material daily cloud-spend spikes and explains them from query evidence. It uses 90 days of **deterministic, explicitly synthetic** GCP-style billing records. The local demo remains offline and free. A gated, live-validation phase is being prepared in a dedicated GCP Free Trial project; no workload resources have been deployed yet.
+A local-first portfolio project that detects material daily cloud-spend spikes and explains them from query evidence. It uses 90 days of **deterministic, explicitly synthetic** GCP-style billing records. The local demo remains offline and free. The same synthetic detector has been validated in BigQuery and through a private, scale-to-zero Cloud Run service in a dedicated GCP Free Trial project.
 
 > **Illustrative data only.** Every record is generated, every billing account identifier is fake, and no row represents anyone's real cloud spend.
 
@@ -83,9 +83,9 @@ The suite covers:
 
 ## GCP deployment status
 
-The live design is synthetic CSV → BigQuery → bounded Workflow query → anomaly table → authenticated Cloud Run API, with Cloud Scheduler as the daily trigger. A dedicated project exists under an active Free Trial, but workload deployment remains locked while the project-scoped warning budget is established and verified.
+The live design is synthetic CSV → BigQuery → bounded Workflow query → anomaly table → authenticated Cloud Run API. The budget, query quota, BigQuery validation, and private Cloud Run validation are complete. Workflow deployment and execution are manual-only for the next stage; Cloud Scheduler remains separately gated off.
 
-[`infra/`](infra/) defaults both identity bootstrap and workloads to off. It defines a `$25` warning budget, 10 GiB/day BigQuery quota, digest-pinned scale-to-zero Cloud Run service, bounded Scheduler/Workflow, separate runtime identities, branch-and-repository-scoped GitHub OIDC federation, and workflow-failure alerting. CI validates Terraform without credentials. The manual cloud workflow can create a plan but deliberately cannot apply it.
+[`infra/`](infra/) defaults identity bootstrap, workloads, and automatic scheduling to off. It defines a `$25` warning budget, 10 GiB/day BigQuery quota, digest-pinned scale-to-zero Cloud Run service, bounded Workflow, separately gated Scheduler, separate runtime identities, branch-and-repository-scoped GitHub OIDC federation, and workflow-failure alerting. CI validates Terraform without credentials. Manual GitHub workflows use keyless authentication and exact confirmation phrases; the Terraform workflow can plan but deliberately cannot apply.
 
 Budget alerts do not stop spend, and quotas cannot guarantee a zero bill. The operating target is **`$0` out of pocket**. The `$25` project budget is an early-warning alert, not permission to spend. The **`$50` contingency ceiling** is a manual stop limit, not an automatically enforced cap or pre-authorized spend; any out-of-pocket charge requires explicit approval first. The trial must not be upgraded. Live changes require visible budget evidence and plan review. Gemini and other generative-AI services are excluded.
 

@@ -22,14 +22,17 @@ The budget is an early-warning threshold, not authorization to spend `$25`. The 
 
 The warning budget is the only resource intended for the first reviewed apply.
 Every workload, API enablement, service account, quota override, dataset, table,
-Cloud Run service, Workflow, and Scheduler job is guarded by
-`deploy_workloads = false` by default. The flag must not be enabled until the
+Cloud Run service and Workflow are guarded by `deploy_workloads = false` by
+default. Automatic execution has a second gate, `enable_scheduler = false`,
+which also keeps the Scheduler API, service account, IAM grant, and job absent
+during manual validation. These flags must not be enabled until the
 project-scoped budget and all three email thresholds are visibly confirmed.
 
 When the gate is eventually enabled, the container image must use an immutable
 `@sha256:` digest. Cloud Run has zero minimum instances and one maximum
 instance. No public IAM principal is granted access. The daily Workflow caps
-each BigQuery job at 10 GiB, and Scheduler permits only one retry.
+each BigQuery job at 10 GiB. If automatic scheduling is separately approved,
+Scheduler permits only one retry.
 
 GitHub Actions uses Workload Identity Federation. The provider accepts tokens
 only for `ccooper-data/cloudspend-intelligence`, the numeric owner ID supplied
