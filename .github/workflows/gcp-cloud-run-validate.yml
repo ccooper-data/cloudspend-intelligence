@@ -59,17 +59,38 @@ jobs:
           PROJECT_TOKEN: ${{ steps.identity_project.outputs.id_token }}
         run: |
           set -euo pipefail
-          anonymous_status="$(curl --silent --output /dev/null --write-out '%{http_code}' \
-            "$STATUS_URL/healthz")"
+          printf 'STATUS_URL_Q=%q\n' "$STATUS_URL"
+          printf 'PROJECT_URL_Q=%q\n' "$PROJECT_URL"
+          printf 'STATUS_URL_LENGTH=%s\n' "${#STATUS_URL}"
+          printf 'PROJECT_URL_LENGTH=%s\n' "${#PROJECT_URL}"
+          printf '%s' "$STATUS_URL" | od -An -tx1 | sed 's/^/STATUS_URL_HEX=/'
+          printf '%s' "$PROJECT_URL" | od -An -tx1 | sed 's/^/PROJECT_URL_HEX=/'
+
+          python - <<'PY'
+          import base64
+          import json
+          import os
+
+          for name in ("STATUS_TOKEN", "PROJECT_TOKEN"):
+              payload = os.environ[name].split(".")[1]
+              payload += "=" * (-len(payload) % 4)
+              claims = json.loads(base64.urlsafe_b64decode(payload))
+              safe = {key: claims.get(key) for key in ("aud", "iss")}
+              print(f"{name}_CLAIMS={json.dumps(safe, sort_keys=True)}")
+          PY
+
+          anonymous_status="$(curl --verbose --output /dev/null --write-out '%{http_code}' \
+            "$STATUS_URL/healthz" 2> /tmp/status-curl-verbose.log)"
+          cat /tmp/status-curl-verbose.log
           case "$anonymous_status" in
             401|403|404) ;;
             *) echo "Expected anonymous access to be denied, got HTTP $anonymous_status" >&2; exit 1 ;;
           esac
 
           status_code="$(curl --silent --output /tmp/status-health.json --write-out '%{http_code}' \
-            --header "X-Serverless-Authorization: Bearer $STATUS_TOKEN" "$STATUS_URL/healthz")"
+            --header "Authorization: Bearer $STATUS_TOKEN" "$STATUS_URL/healthz")"
           project_code="$(curl --silent --output /tmp/project-health.json --write-out '%{http_code}' \
-            --header "X-Serverless-Authorization: Bearer $PROJECT_TOKEN" "$PROJECT_URL/healthz")"
+            --header "Authorization: Bearer $PROJECT_TOKEN" "$PROJECT_URL/healthz")"
           echo "status.url matched-audience response: HTTP $status_code"
           echo "project-number matched-audience response: HTTP $project_code"
 
@@ -98,7 +119,7 @@ jobs:
           PY
 
           curl --fail --silent --show-error \
-            --header "X-Serverless-Authorization: Bearer $IDENTITY_TOKEN" \
+            --header "Authorization: Bearer $IDENTITY_TOKEN" \
             --header 'Content-Type: application/json' \
             --data-binary @/tmp/request.json \
             "$SERVICE_URL/v1/anomalies" > /tmp/response.json
