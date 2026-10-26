@@ -29,15 +29,11 @@ jobs:
       - uses: google-github-actions/setup-gcloud@v3
       - name: Require the intentional execution failure
         run: |
-          set +e
           output="$(gcloud workflows run cloudspend-daily \
             --project=cloudspend-intelligence-v1 \
             --location=us-central1 \
             --data='{"trigger":"controlled-failure-test","force_failure":true}' \
             --format=json 2>&1)"
-          status=$?
-          set -e
           printf '%s\n' "$output"
-          test "$status" -ne 0
           grep -F 'CONTROLLED_TEST_FAILURE' <<<"$output"
-          grep -F 'FAILED' <<<"$output"
+          grep -F '"state": "FAILED"' <<<"$output"

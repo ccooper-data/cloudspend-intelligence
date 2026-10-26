@@ -120,7 +120,8 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('environment: gcp-demo', failure)
         self.assertIn('id-token: write', failure)
         self.assertIn('"force_failure":true', failure)
-        self.assertIn('test "$status" -ne 0', failure)
+        self.assertIn('\"state\": \"FAILED\"', failure)
+        self.assertNotIn('test "$status" -ne 0', failure)
         self.assertNotIn('cloud scheduler', failure.lower())
 
     def test_monitoring_detects_failed_workflow_executions(self) -> None:
