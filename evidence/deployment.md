@@ -82,7 +82,13 @@ account screenshots.
 
 ## Remaining validation and teardown
 
-- Controlled Workflow failure and recovery evidence: pending
+- Controlled execution `0b3673b8-389d-4f1a-853f-aa74eda6f47a` entered
+  `FAILED` with `CONTROLLED_TEST_FAILURE`; its branch submitted no BigQuery job
+- Controlled-failure GitHub run: [cloud failure verified; wrapper assertion exposed and corrected](https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40254590466)
+- Recovery execution `616bb5d2-2a56-4c77-b05d-b025ed75a4a9` entered
+  `SUCCEEDED` and reproduced exactly two expected anomalies
+- Recovery GitHub run: [passed](https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40254712700)
+- GitHub remained `roles/workflows.invoker` only after the revision deployment
 - Workflow failure notification/monitoring: pending
 - Automatic Scheduler: deliberately deferred; requires separate approval
 - Final reported charges / trial-credit change: pending
