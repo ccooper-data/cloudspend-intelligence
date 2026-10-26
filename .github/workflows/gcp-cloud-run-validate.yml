@@ -29,37 +29,60 @@ jobs:
           service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
       - uses: google-github-actions/setup-gcloud@v3
       - id: service
-        name: Resolve the private service URL
+        name: Resolve both advertised private service URLs
         run: |
-          url="$(gcloud run services describe cloudspend-api \
-            --project=cloudspend-intelligence-v1 --region=us-central1 \
-            --format='value(status.url)')"
-          echo "url=$url" >> "$GITHUB_OUTPUT"
-      - id: identity
+          service="$(gcloud run services describe cloudspend-api \
+            --project=cloudspend-intelligence-v1 --region=us-central1 --format=json)"
+          status_url="$(jq -r '.status.url' <<< "$service")"
+          project_url="$(jq -r '.metadata.annotations["run.googleapis.com/urls"] | fromjson | .[0]' <<< "$service")"
+          echo "status_url=$status_url" >> "$GITHUB_OUTPUT"
+          echo "project_url=$project_url" >> "$GITHUB_OUTPUT"
+      - id: identity_status
         uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
           token_format: id_token
-          id_token_audience: ${{ steps.service.outputs.url }}
+          id_token_audience: ${{ steps.service.outputs.status_url }}
+      - id: identity_project
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
+          token_format: id_token
+          id_token_audience: ${{ steps.service.outputs.project_url }}
       - name: Verify private, authenticated, deterministic behavior
         env:
-          SERVICE_URL: ${{ steps.service.outputs.url }}
-          IDENTITY_TOKEN: ${{ steps.identity.outputs.id_token }}
+          STATUS_URL: ${{ steps.service.outputs.status_url }}
+          PROJECT_URL: ${{ steps.service.outputs.project_url }}
+          STATUS_TOKEN: ${{ steps.identity_status.outputs.id_token }}
+          PROJECT_TOKEN: ${{ steps.identity_project.outputs.id_token }}
         run: |
           set -euo pipefail
           anonymous_status="$(curl --silent --output /dev/null --write-out '%{http_code}' \
-            "$SERVICE_URL/healthz")"
+            "$STATUS_URL/healthz")"
           case "$anonymous_status" in
             401|403|404) ;;
             *) echo "Expected anonymous access to be denied, got HTTP $anonymous_status" >&2; exit 1 ;;
           esac
 
-          authenticated_status="$(curl --silent --output /tmp/health.json --write-out '%{http_code}' \
-            --header "X-Serverless-Authorization: Bearer $IDENTITY_TOKEN" "$SERVICE_URL/healthz")"
-          if test "$authenticated_status" != "200"; then
-            echo "Expected authenticated health check HTTP 200, got HTTP $authenticated_status" >&2
-            cat /tmp/health.json >&2
+          status_code="$(curl --silent --output /tmp/status-health.json --write-out '%{http_code}' \
+            --header "X-Serverless-Authorization: Bearer $STATUS_TOKEN" "$STATUS_URL/healthz")"
+          project_code="$(curl --silent --output /tmp/project-health.json --write-out '%{http_code}' \
+            --header "X-Serverless-Authorization: Bearer $PROJECT_TOKEN" "$PROJECT_URL/healthz")"
+          echo "status.url matched-audience response: HTTP $status_code"
+          echo "project-number matched-audience response: HTTP $project_code"
+
+          if test "$status_code" = "200"; then
+            SERVICE_URL="$STATUS_URL"
+            IDENTITY_TOKEN="$STATUS_TOKEN"
+            cp /tmp/status-health.json /tmp/health.json
+          elif test "$project_code" = "200"; then
+            SERVICE_URL="$PROJECT_URL"
+            IDENTITY_TOKEN="$PROJECT_TOKEN"
+            cp /tmp/project-health.json /tmp/health.json
+          else
+            echo "Neither advertised URL reached the authenticated health endpoint." >&2
             exit 1
           fi
           python -c 'import json; assert json.load(open("/tmp/health.json")) == {"status": "ok"}'
