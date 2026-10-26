@@ -79,6 +79,9 @@ account screenshots.
 - Logging: errors only
 - Trigger label: `manual`
 - Cloud Scheduler API, service account, job, and IAM binding: absent
+- Cloud Monitoring email channel: enabled; destination retained only in GCP
+- Alert policy: `CloudSpend manual workflow failure`, enabled and filtered to
+  `cloudspend-daily`, `us-central1`, and execution status `FAILED`
 
 ## Remaining validation and teardown
 
@@ -89,7 +92,7 @@ account screenshots.
   `SUCCEEDED` and reproduced exactly two expected anomalies
 - Recovery GitHub run: [passed](https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40254712700)
 - GitHub remained `roles/workflows.invoker` only after the revision deployment
-- Workflow failure notification/monitoring: pending
+- Workflow failure policy and email channel: configured; delivery test pending
 - Automatic Scheduler: deliberately deferred; requires separate approval
 - Final reported charges / trial-credit change: pending
 - Teardown: pending explicit approval; no destructive action performed

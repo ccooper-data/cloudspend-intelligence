@@ -128,7 +128,8 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         monitoring = (ROOT / "infra" / "monitoring.tf").read_text(encoding="utf-8")
 
         self.assertIn('finished_execution_count', monitoring)
-        self.assertIn('metric.labels.status != "SUCCEEDED"', monitoring)
+        self.assertIn('resource.labels.location = "${var.region}"', monitoring)
+        self.assertIn('metric.labels.status = "FAILED"', monitoring)
         self.assertIn('threshold_value = 0', monitoring)
         self.assertIn('notification_channels', monitoring)
 

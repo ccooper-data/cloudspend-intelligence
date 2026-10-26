@@ -32,8 +32,9 @@ resource "google_monitoring_alert_policy" "workflow_failure" {
       filter = <<-EOT
         resource.type = "workflows.googleapis.com/Workflow"
         AND resource.labels.workflow_id = "cloudspend-daily"
+        AND resource.labels.location = "${var.region}"
         AND metric.type = "workflows.googleapis.com/finished_execution_count"
-        AND metric.labels.status != "SUCCEEDED"
+        AND metric.labels.status = "FAILED"
       EOT
 
       comparison      = "COMPARISON_GT"

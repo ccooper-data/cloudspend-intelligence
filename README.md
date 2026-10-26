@@ -83,7 +83,7 @@ The suite covers:
 
 ## GCP deployment status
 
-The live design is synthetic CSV → BigQuery → bounded Workflow query → anomaly table → authenticated Cloud Run API. The budget, query quota, BigQuery validation, private Cloud Run validation, and manual Workflow validation are complete. A gated failure test produced the expected `FAILED` execution without submitting a BigQuery job; the recovery execution returned `SUCCEEDED` and reproduced exactly two expected anomalies. Cloud Scheduler remains disabled and separately gated off.
+The live design is synthetic CSV → BigQuery → bounded Workflow query → anomaly table → authenticated Cloud Run API. The budget, query quota, BigQuery validation, private Cloud Run validation, and manual Workflow validation are complete. A gated failure test produced the expected `FAILED` execution without submitting a BigQuery job; the recovery execution returned `SUCCEEDED` and reproduced exactly two expected anomalies. A narrowly filtered Cloud Monitoring failure policy and private email channel are enabled. Cloud Scheduler remains disabled and separately gated off.
 
 [`infra/`](infra/) defaults identity bootstrap, workloads, and automatic scheduling to off. It defines a `$25` warning budget, 10 GiB/day BigQuery quota, digest-pinned scale-to-zero Cloud Run service, bounded Workflow, separately gated Scheduler, separate runtime identities, branch-and-repository-scoped GitHub OIDC federation, and workflow-failure alerting. CI validates Terraform without credentials. Manual GitHub workflows use keyless authentication and exact confirmation phrases; the Terraform workflow can plan but deliberately cannot apply.
 
