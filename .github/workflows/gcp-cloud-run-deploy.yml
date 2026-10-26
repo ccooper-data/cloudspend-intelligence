@@ -49,6 +49,7 @@ jobs:
           --project=cloudspend-intelligence-v1
           --region=us-central1
           --image=${{ steps.image.outputs.uri }}
+          --revision-suffix=r${{ github.run_id }}
           --service-account=cloudspend-api-runtime@cloudspend-intelligence-v1.iam.gserviceaccount.com
           --port=8080
           --cpu=1

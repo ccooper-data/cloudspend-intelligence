@@ -118,6 +118,7 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('id-token: write', workflow)
         self.assertIn('us-central1-docker.pkg.dev/cloudspend-intelligence-v1/cloudspend-api/', workflow)
         self.assertIn('@$digest', workflow)
+        self.assertIn('--revision-suffix=r${{ github.run_id }}', workflow)
         self.assertIn('--service-account=cloudspend-api-runtime@', workflow)
         self.assertIn('--min=0', workflow)
         self.assertIn('--max=1', workflow)
