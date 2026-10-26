@@ -105,12 +105,15 @@ account screenshots.
   one active Workflow, one BigQuery dataset, one 48.499 MB Artifact Registry
   repository with a retain-three cleanup policy, and one repository/branch/
   environment-restricted Workload Identity provider
-- The GitHub deployment identity has zero user-managed keys. Retired
-  `cloudspend-github` bindings remain visible as nonfunctional deleted-principal
-  entries; they grant no access and can be removed during separately approved
-  cleanup
+- The GitHub deployment identity has zero user-managed keys. All twelve
+  nonfunctional deleted-principal bindings for the retired `cloudspend-github`
+  identity were removed on 2026-10-26; a fresh IAM query returned no matches
+- The default Compute Engine service account has no direct project-level IAM
+  roles
 - The billing banner still displayed `$300.00` in trial credit and 90 days
-  remaining. A precise final charges report could not be independently read
-  because the signed-in account lacks
-  `billing.accounts.getSpendingInformationScoped`; billing data can also lag
+  remaining. The minimal `roles/billing.projectCostsManager` role was granted
+  to the private operator account, resolving the previously missing
+  `billing.accounts.getSpendingInformationScoped` permission. The Reports and
+  Cost table pages then failed with Google Console loading errors, so a precise
+  final charge figure remains unverified; billing data can also lag
 - Teardown: pending explicit approval; no destructive action performed
