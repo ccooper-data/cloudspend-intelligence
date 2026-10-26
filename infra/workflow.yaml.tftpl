@@ -16,6 +16,7 @@ main:
         switch:
           - condition: $${query_result.jobComplete == true}
             next: return_result
+    - fail_incomplete:
         raise: "BigQuery detector job did not complete within the bounded workflow call"
     - return_result:
         return:

@@ -84,6 +84,8 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('retry_count          = 1', platform)
         self.assertIn('attempt_deadline = "60s"', platform)
         self.assertIn('maximumBytesBilled: "10737418240"', workflow)
+        self.assertIn('- fail_incomplete:', workflow)
+        self.assertNotIn('next: return_result\n        raise:', workflow)
         self.assertIn('CREATE OR REPLACE TABLE', sql)
         self.assertIn('LEFT JOIN service_daily AS prior', sql)
         self.assertIn('WHERE history_days = 14', sql)
