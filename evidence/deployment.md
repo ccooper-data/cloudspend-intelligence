@@ -91,7 +91,8 @@ account screenshots.
 - Recovery execution `616bb5d2-2a56-4c77-b05d-b025ed75a4a9` entered
   `SUCCEEDED` and reproduced exactly two expected anomalies
 - Recovery GitHub run: [passed](https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40254712700)
-- GitHub remained `roles/workflows.invoker` only after the revision deployment
+- GitHub retained only `roles/bigquery.jobUser` and `roles/workflows.invoker`
+  after the revision deployment
 - Monitoring delivery test GitHub run: [passed](https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40255196653)
 - A new controlled `FAILED` execution opened the narrowly scoped alert and delivered
   an email to the private operator channel at 2026-10-26T01:41:00Z; the message
@@ -100,5 +101,16 @@ account screenshots.
 - Post-alert recovery GitHub run: [passed](https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40255253815),
   reproducing exactly two expected anomalies
 - Automatic Scheduler: deliberately deferred; requires separate approval
-- Final reported charges / trial-credit change: pending
+- Final read-only inventory on 2026-10-26 found one private Cloud Run service,
+  one active Workflow, one BigQuery dataset, one 48.499 MB Artifact Registry
+  repository with a retain-three cleanup policy, and one repository/branch/
+  environment-restricted Workload Identity provider
+- The GitHub deployment identity has zero user-managed keys. Retired
+  `cloudspend-github` bindings remain visible as nonfunctional deleted-principal
+  entries; they grant no access and can be removed during separately approved
+  cleanup
+- The billing banner still displayed `$300.00` in trial credit and 90 days
+  remaining. A precise final charges report could not be independently read
+  because the signed-in account lacks
+  `billing.accounts.getSpendingInformationScoped`; billing data can also lag
 - Teardown: pending explicit approval; no destructive action performed
