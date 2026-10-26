@@ -92,7 +92,13 @@ account screenshots.
   `SUCCEEDED` and reproduced exactly two expected anomalies
 - Recovery GitHub run: [passed](https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40254712700)
 - GitHub remained `roles/workflows.invoker` only after the revision deployment
-- Workflow failure policy and email channel: configured; delivery test pending
+- Monitoring delivery test GitHub run: [passed](https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40255196653)
+- A new controlled `FAILED` execution opened the narrowly scoped alert and delivered
+  an email to the private operator channel at 2026-10-26T01:41:00Z; the message
+  identified project `cloudspend-intelligence-v1`, region `us-central1`, and
+  workflow `cloudspend-daily`
+- Post-alert recovery GitHub run: [passed](https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40255253815),
+  reproducing exactly two expected anomalies
 - Automatic Scheduler: deliberately deferred; requires separate approval
 - Final reported charges / trial-credit change: pending
 - Teardown: pending explicit approval; no destructive action performed
