@@ -1,6 +1,12 @@
 main:
   params: [args]
   steps:
+    - route_execution:
+        switch:
+          - condition: $${default(map.get(args, "force_failure"), false) == true}
+            next: fail_controlled
+          - condition: true
+            next: run_detector_query
     - run_detector_query:
         call: googleapis.bigquery.v2.jobs.query
         args:
@@ -22,3 +28,5 @@ main:
         return:
           jobComplete: $${query_result.jobComplete}
           totalRows: $${default(map.get(query_result, "totalRows"), "0")}
+    - fail_controlled:
+        raise: "CONTROLLED_TEST_FAILURE: no BigQuery job was submitted"

@@ -1,0 +1,43 @@
+name: GCP Controlled Workflow Failure Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type TEST_CONTROLLED_FAILURE to create one intentional failed execution"
+        required: true
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: cloudspend-workflow-failure-test
+  cancel-in-progress: false
+
+jobs:
+  test-failure:
+    if: inputs.confirm == 'TEST_CONTROLLED_FAILURE'
+    runs-on: ubuntu-latest
+    environment: gcp-demo
+    steps:
+      - uses: actions/checkout@v7
+      - uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Require the intentional execution failure
+        run: |
+          set +e
+          output="$(gcloud workflows run cloudspend-daily \
+            --project=cloudspend-intelligence-v1 \
+            --location=us-central1 \
+            --data='{"trigger":"controlled-failure-test","force_failure":true}' \
+            --format=json 2>&1)"
+          status=$?
+          set -e
+          printf '%s\n' "$output"
+          test "$status" -ne 0
+          grep -F 'CONTROLLED_TEST_FAILURE' <<<"$output"
+          grep -F 'FAILED' <<<"$output"

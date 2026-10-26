@@ -84,6 +84,8 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('retry_count          = 1', platform)
         self.assertIn('attempt_deadline = "60s"', platform)
         self.assertIn('maximumBytesBilled: "10737418240"', workflow)
+        self.assertIn('force_failure', workflow)
+        self.assertIn('CONTROLLED_TEST_FAILURE: no BigQuery job was submitted', workflow)
         self.assertIn('- fail_incomplete:', workflow)
         self.assertNotIn('next: return_result\n        raise:', workflow)
         self.assertIn('CREATE OR REPLACE TABLE', sql)
@@ -112,6 +114,14 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn('gcloud workflows run cloudspend-daily', run)
         self.assertIn('--maximum_bytes_billed=104857600', run)
         self.assertIn('.replace("$${", "${")', renderer)
+
+        failure = (ROOT / ".github" / "workflows" / "gcp-workflow-failure-test.yml").read_text(encoding="utf-8")
+        self.assertIn("inputs.confirm == 'TEST_CONTROLLED_FAILURE'", failure)
+        self.assertIn('environment: gcp-demo', failure)
+        self.assertIn('id-token: write', failure)
+        self.assertIn('"force_failure":true', failure)
+        self.assertIn('test "$status" -ne 0', failure)
+        self.assertNotIn('cloud scheduler', failure.lower())
 
     def test_monitoring_detects_failed_workflow_executions(self) -> None:
         monitoring = (ROOT / "infra" / "monitoring.tf").read_text(encoding="utf-8")
