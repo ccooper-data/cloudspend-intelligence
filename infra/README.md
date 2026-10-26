@@ -1,7 +1,8 @@
 # Staged infrastructure
 
-The warning budget, BigQuery quota, and keyless GitHub identity have been
-validated live. Workload resources remain disabled. The existing warning budget
+The warning budget, BigQuery quota, keyless GitHub identity, private Cloud Run
+service, and bounded manual Workflow have been validated live. Cloud Scheduler
+remains disabled. The existing warning budget
 was created during the manual cost gate, so `manage_budget` defaults to `false`
 to prevent a later plan from trying to create a duplicate.
 

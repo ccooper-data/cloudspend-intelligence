@@ -4,7 +4,7 @@
 
 **[Watch the 64-second project demo](https://youtu.be/BjCXFz_tLf8)** — explicitly synthetic data and no LLM.
 
-A local-first portfolio project that detects material daily cloud-spend spikes and explains them from query evidence. It uses 90 days of **deterministic, explicitly synthetic** GCP-style billing records. The local demo remains offline and free. The same synthetic detector has been validated in BigQuery and through a private, scale-to-zero Cloud Run service in a dedicated GCP Free Trial project.
+A local-first portfolio project that detects material daily cloud-spend spikes and explains them from query evidence. It uses 90 days of **deterministic, explicitly synthetic** GCP-style billing records. The local demo remains offline and free. The same synthetic detector has been validated in BigQuery, a bounded manually triggered Workflow, and a private, scale-to-zero Cloud Run service in a dedicated GCP Free Trial project.
 
 > **Illustrative data only.** Every record is generated, every billing account identifier is fake, and no row represents anyone's real cloud spend.
 
@@ -83,7 +83,7 @@ The suite covers:
 
 ## GCP deployment status
 
-The live design is synthetic CSV → BigQuery → bounded Workflow query → anomaly table → authenticated Cloud Run API. The budget, query quota, BigQuery validation, and private Cloud Run validation are complete. Workflow deployment and execution are manual-only for the next stage; Cloud Scheduler remains separately gated off.
+The live design is synthetic CSV → BigQuery → bounded Workflow query → anomaly table → authenticated Cloud Run API. The budget, query quota, BigQuery validation, private Cloud Run validation, and one-time manual Workflow validation are complete. The Workflow returned `SUCCEEDED` and reproduced exactly two expected anomalies. Cloud Scheduler remains disabled and separately gated off.
 
 [`infra/`](infra/) defaults identity bootstrap, workloads, and automatic scheduling to off. It defines a `$25` warning budget, 10 GiB/day BigQuery quota, digest-pinned scale-to-zero Cloud Run service, bounded Workflow, separately gated Scheduler, separate runtime identities, branch-and-repository-scoped GitHub OIDC federation, and workflow-failure alerting. CI validates Terraform without credentials. Manual GitHub workflows use keyless authentication and exact confirmation phrases; the Terraform workflow can plan but deliberately cannot apply.
 

@@ -1,7 +1,8 @@
 # GCP deployment and teardown runbook
 
-Status: **prepared, not yet applied**. The live project is
-`cloudspend-intelligence-v1`. All committed data is synthetic.
+Status: **manual validation applied; automatic scheduling remains disabled**.
+The live project is `cloudspend-intelligence-v1`. All committed data is
+synthetic.
 
 ## Non-negotiable gates
 
@@ -41,7 +42,7 @@ keyless and intentionally has no apply step. Confirm:
 - only the allow-listed APIs are enabled;
 - BigQuery has a 10 GiB/day project quota and every query has the same maximum;
 - Cloud Run has min 0, max 1, and no public IAM member;
-- Scheduler runs once daily with one retry;
+- Scheduler is absent unless its separate default-off gate is explicitly approved;
 - all runtime identities have distinct, narrow roles;
 - the container reference is pinned by digest;
 - the failure alert targets the verified operator email.
@@ -63,7 +64,7 @@ Record timestamps and redacted command output in `evidence/deployment.md`:
 - Terraform plan summary and applied commit SHA;
 - BigQuery row count (540), anomaly service-days (2), and attributed rows;
 - Cloud Run min/max settings and unauthenticated rejection;
-- successful manual Workflow execution and Scheduler configuration;
+- successful manual Workflow execution and evidence that Scheduler is disabled;
 - IAM bindings showing no service-account keys or public principals;
 - failure-test incident and recovery;
 - final resource inventory and post-teardown billing check.
@@ -73,11 +74,10 @@ Terraform state, or screenshots containing private account details.
 
 ## Failure handling
 
-The query uses `CREATE OR REPLACE TABLE`, so a retry is idempotent. Scheduler is
-limited to one retry. The Workflow fails if BigQuery does not finish within its
-bounded call, and Cloud Monitoring alerts on any non-success execution. Before a
-manual retry, inspect the execution and verify bytes processed; do not create a
-retry loop.
+The query uses `CREATE OR REPLACE TABLE`, so a retry is idempotent. The Workflow
+fails if BigQuery does not finish within its bounded call. Before a manual retry,
+inspect the execution and verify bytes processed; do not create a retry loop. If
+Scheduler is later approved, it is limited to one retry.
 
 ## Teardown
 
