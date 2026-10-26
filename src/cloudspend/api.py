@@ -43,7 +43,7 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(encoded)
 
     def do_GET(self) -> None:  # noqa: N802 - required by BaseHTTPRequestHandler
-        if self.path == "/healthz":
+        if self.path == "/v1/health":
             self._json(200, {"status": "ok"})
         else:
             self._json(404, {"error": "not found"})

@@ -108,7 +108,7 @@ class InfrastructureGuardrailTests(unittest.TestCase):
 
         self.assertIn('docker build --tag cloudspend-api:ci .', workflow)
         self.assertIn('--entrypoint id cloudspend-api:ci -u', workflow)
-        self.assertIn('http://127.0.0.1:8080/healthz', workflow)
+        self.assertIn('http://127.0.0.1:8080/v1/health', workflow)
 
     def test_cloud_run_demo_deployment_is_private_and_bounded(self) -> None:
         workflow = (ROOT / ".github" / "workflows" / "gcp-cloud-run-deploy.yml").read_text(encoding="utf-8")
@@ -141,6 +141,7 @@ class InfrastructureGuardrailTests(unittest.TestCase):
         self.assertIn("STATUS_URL_HEX=", workflow)
         self.assertIn('curl --verbose', workflow)
         self.assertIn('Authorization: Bearer $STATUS_TOKEN', workflow)
+        self.assertIn('$STATUS_URL/v1/health', workflow)
         self.assertNotIn('X-Serverless-Authorization', workflow)
         self.assertIn('401|403|404', workflow)
         self.assertIn('result["anomaly_count"] == 2', workflow)

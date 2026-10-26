@@ -33,10 +33,10 @@ jobs:
           test "$(docker run --rm --entrypoint id cloudspend-api:ci -u)" != "0"
           docker run --detach --name cloudspend-api-ci --publish 8080:8080 cloudspend-api:ci
           for attempt in 1 2 3 4 5; do
-            curl --fail --silent http://127.0.0.1:8080/healthz && break
+            curl --fail --silent http://127.0.0.1:8080/v1/health && break
             sleep 1
           done
-          curl --fail --silent http://127.0.0.1:8080/healthz
+          curl --fail --silent http://127.0.0.1:8080/v1/health
           docker rm --force cloudspend-api-ci
       - uses: hashicorp/setup-terraform@v4
         if: matrix.python-version == '3.12'

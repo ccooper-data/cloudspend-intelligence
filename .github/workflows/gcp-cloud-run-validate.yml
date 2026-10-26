@@ -80,7 +80,7 @@ jobs:
           PY
 
           anonymous_status="$(curl --verbose --output /dev/null --write-out '%{http_code}' \
-            "$STATUS_URL/healthz" 2> /tmp/status-curl-verbose.log)"
+            "$STATUS_URL/v1/health" 2> /tmp/status-curl-verbose.log)"
           cat /tmp/status-curl-verbose.log
           case "$anonymous_status" in
             401|403|404) ;;
@@ -88,9 +88,9 @@ jobs:
           esac
 
           status_code="$(curl --silent --output /tmp/status-health.json --write-out '%{http_code}' \
-            --header "Authorization: Bearer $STATUS_TOKEN" "$STATUS_URL/healthz")"
+            --header "Authorization: Bearer $STATUS_TOKEN" "$STATUS_URL/v1/health")"
           project_code="$(curl --silent --output /tmp/project-health.json --write-out '%{http_code}' \
-            --header "Authorization: Bearer $PROJECT_TOKEN" "$PROJECT_URL/healthz")"
+            --header "Authorization: Bearer $PROJECT_TOKEN" "$PROJECT_URL/v1/health")"
           echo "status.url matched-audience response: HTTP $status_code"
           echo "project-number matched-audience response: HTTP $project_code"
 
