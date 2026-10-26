@@ -6,7 +6,7 @@ import unittest
 from datetime import date, timedelta
 from pathlib import Path
 
-from cloudspend.detector import connect, detect, load_records
+from cloudspend.detector import connect, detect, detector_sql, load_records
 from cloudspend.generate import build_records, write_dataset
 
 
@@ -26,6 +26,10 @@ def run(rows):
 
 
 class DetectorTests(unittest.TestCase):
+    def test_packaged_detector_sql_matches_reviewable_source(self):
+        source = Path(__file__).resolve().parents[1] / "sql" / "detect_anomalies.sql"
+        self.assertEqual(source.read_text(encoding="utf-8"), detector_sql())
+
     def test_flags_only_when_both_thresholds_are_strictly_exceeded(self):
         found = run(series([100] * 14 + [151]))
         self.assertEqual(1, len(found))

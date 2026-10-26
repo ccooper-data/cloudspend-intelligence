@@ -6,9 +6,12 @@ import csv
 import sqlite3
 from collections.abc import Iterable
 from dataclasses import dataclass, asdict
+from importlib.resources import files
 from pathlib import Path
 
-SQL_PATH = Path(__file__).resolve().parents[2] / "sql" / "detect_anomalies.sql"
+
+def detector_sql() -> str:
+    return files("cloudspend").joinpath("sql/detect_anomalies.sql").read_text(encoding="utf-8")
 
 
 @dataclass(frozen=True)
@@ -74,7 +77,7 @@ def load_records(db: sqlite3.Connection, rows: Iterable[dict[str, object]]) -> N
 
 
 def detect(db: sqlite3.Connection) -> list[Anomaly]:
-    flagged = db.execute(SQL_PATH.read_text(encoding="utf-8")).fetchall()
+    flagged = db.execute(detector_sql()).fetchall()
     results: list[Anomaly] = []
     for item in flagged:
         # Stable secondary ordering makes contributor ties deterministic.
