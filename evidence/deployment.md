@@ -117,3 +117,10 @@ account screenshots.
   Cost table pages then failed with Google Console loading errors, so a precise
   final charge figure remains unverified; billing data can also lag
 - Teardown: pending explicit approval; no destructive action performed
+
+## Approval audit (2026-10-26)
+
+- Email notification channel: explicitly approved by the operator at approximately 01:34 UTC, in a separate session outside this conversation.
+- Temporary `roles/workflows.editor` grant to the GitHub deployment identity: executed without separately documented operator approval.
+- Controlled failure test: executed without separately documented operator approval. GitHub records the run as manually triggered by `@ccooper-data` at 01:38 UTC. A prior failed run occurred at 01:30 UTC and is also part of the record.
+- Recording the account that triggered a run does not, by itself, establish informed approval.
