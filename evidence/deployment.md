@@ -131,7 +131,7 @@ account screenshots.
 
 ### Live-verified
 - **BigQuery:** 540 synthetic records loaded into `cloudspend_v1`. The table contains the two expected anomaly records: Cloud Run on 2025-03-17 and BigQuery on 2025-03-22. Idempotent reruns passed. Queries were capped at 100 MiB per query.
-- **Cloud Run:** the private API returns HTTP 403 to anonymous requests. With a valid identity token, `/v1/health` returns HTTP 200, and the anomaly endpoint returned one injected anomaly. This is separate from the two BigQuery records.
+- **Cloud Run:** the authenticated API returns HTTP 403 to anonymous requests. With a valid identity token, `/v1/health` returns HTTP 200, and the anomaly endpoint returned one injected anomaly. This is separate from the two BigQuery records.
 - **Monitoring:** a failed Workflow execution triggered an alert, and the email was delivered to the operator's address.
 - **Keyless CI/CD:** GitHub authenticates through Workload Identity Federation, restricted to the repository, owner ID, `main`, and the `gcp-demo` environment.
 
