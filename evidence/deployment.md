@@ -124,3 +124,53 @@ account screenshots.
 - Temporary `roles/workflows.editor` grant to the GitHub deployment identity: executed without separately documented operator approval.
 - Controlled failure test: executed without separately documented operator approval. GitHub records the run as manually triggered by `@ccooper-data` at 01:38 UTC. A prior failed run occurred at 01:30 UTC and is also part of the record.
 - Recording the account that triggered a run does not, by itself, establish informed approval.
+
+## Final closeout (2026-10-28)
+
+**Scope:** Validation of CloudSpend Intelligence V1 in a personal GCP project. This is not a production service and serves no real customers.
+
+### Live-verified
+- **BigQuery:** 540 synthetic records loaded into `cloudspend_v1`. The table contains the two expected anomaly records: Cloud Run on 2025-03-17 and BigQuery on 2025-03-22. Idempotent reruns passed. Queries were capped at 100 MiB per query.
+- **Cloud Run:** the private API returns HTTP 403 to anonymous requests. With a valid identity token, `/v1/health` returns HTTP 200, and the anomaly endpoint returned one injected anomaly. This is separate from the two BigQuery records.
+- **Monitoring:** a failed Workflow execution triggered an alert, and the email was delivered to the operator's address.
+- **Keyless CI/CD:** GitHub authenticates through Workload Identity Federation, restricted to the repository, owner ID, `main`, and the `gcp-demo` environment.
+
+### Operator-attested
+- **October 2026 billing:** $0.00 observed on 2026-10-28, with $300 trial credits remaining. Not independently audited.
+- **Workflow executions:** the successful Workflow response showed `jobComplete=true` and `totalRows=0`. The two anomaly records were confirmed separately in BigQuery, not in the Workflow output.
+
+### Cloud Run configuration (verified 2026-10-28)
+- Service: `cloudspend-api`, `us-central1`, runtime identity `cloudspend-api-runtime@cloudspend-intelligence-v1.iam.gserviceaccount.com`.
+- Image: SHA-256 digest pinned.
+- Service-level maximum instances: `run.googleapis.com/maxScale: '1'`.
+- Revision-level maximum instances: `autoscaling.knative.dev/maxScale: '3'`. The service-level cap of 1 is the tighter constraint.
+- Minimum instances: none explicitly configured (default 0, scale-to-zero).
+- Resources: 1 vCPU, 256 MiB memory, container concurrency 10, request timeout 60 seconds.
+- Ingress: `all`. Unauthenticated invocation is restricted by IAM, so this is an authenticated service, not a network-private endpoint.
+- Latest revision: ready, receiving 100% of traffic.
+
+### Security and IAM
+- User-managed service-account keys for `cloudspend-demo-github@cloudspend-intelligence-v1.iam.gserviceaccount.com`: **0 found** (checked 2026-10-28). This is not a claim about every service account.
+- GitHub OIDC Workload Identity Federation is restricted to the repository, owner ID, `main`, and the `gcp-demo` environment.
+- Project-level roles for the deployment identity: `roles/bigquery.jobUser` and `roles/workflows.invoker`.
+- Resource-level grants: the Cloud Run service IAM policy also grants the deployment identity `roles/run.developer` and `roles/run.invoker`.
+- The retired `cloudspend-github` identity's 12 project-level bindings were removed on 2026-10-26.
+- The default Compute Engine service account has no direct project-level roles.
+
+### Governance and approvals
+- The email alert channel was approved at about 01:34 UTC in a separate session.
+- The temporary `roles/workflows.editor` grant and the controlled failure test ran without documented approval. See commit `8fb9f81`.
+
+### GitHub run references
+- Controlled failure: `40254590466` (failed, 01:30 UTC); `40255196653` (01:38 UTC, manual, `@ccooper-data`).
+- Recovery: `40254712700`. Post-alert recovery: `40255253815`.
+- Final audit CI: `40255964385`.
+- Approval audit note: commit `8fb9f81`.
+
+### Not yet validated
+- Full IAM review of every permission path.
+- Teardown: pending, not performed.
+
+### Limitations
+- This validates the configuration and behavior of this project only.
+- Cloud Scheduler is deliberately disabled.
