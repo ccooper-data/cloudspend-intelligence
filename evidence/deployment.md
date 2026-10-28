@@ -101,7 +101,7 @@ account screenshots.
 - Post-alert recovery GitHub run: [passed](https://github.com/ccooper-data/cloudspend-intelligence/actions/runs/40255253815),
   reproducing exactly two expected anomalies
 - Automatic Scheduler: deliberately deferred; requires separate approval
-- Final read-only inventory on 2026-10-26 found one private Cloud Run service,
+- Final read-only inventory on 2026-10-26 found one IAM-authenticated Cloud Run service,
   one active Workflow, one BigQuery dataset, one 48.499 MB Artifact Registry
   repository with a retain-three cleanup policy, and one repository/branch/
   environment-restricted Workload Identity provider
